@@ -1,5 +1,6 @@
 #Libraries
 import RPi.GPIO as GPIO
+import buttons
 from time import sleep
 #Disable warnings (optional)
 GPIO.setwarnings(False)
@@ -9,10 +10,9 @@ GPIO.setmode(GPIO.BOARD)
 buzzer=16
 GPIO.setup(buzzer,GPIO.OUT)
 #Run forever loop
-while True:
+if buttons.button_callback==True{
     GPIO.output(buzzer,GPIO.HIGH)
-    print ("Beep")
     sleep(0.5) # Delay in seconds
     GPIO.output(buzzer,GPIO.LOW)
-    print ("No Beep")
     sleep(0.5)
+}
