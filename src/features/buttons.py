@@ -10,6 +10,9 @@ def button_callback(channel):
     print("Button was pushed!")
     print("pin number   " + str(channel))
     GPIO.output(buzzer,GPIO.HIGH)
+    time.sleep(0.5)
+    GPIO.output(buzzer,GPIO.LOW)
+
 
 GPIO.setup(40, GPIO.IN, pull_up_down=GPIO.PUD_DOWN) # Set pin 10 to be an input pin and set initial value to be pulled low (off)
 GPIO.setup(38, GPIO.IN, pull_up_down=GPIO.PUD_DOWN) # Set pin 10 to be an input pin and set initial value to be pulled low (off)
