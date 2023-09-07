@@ -3,6 +3,7 @@ https://pimylifeup.com/raspberry-pi-rfid-rc522/
     SDA → 24
     SCK → 23
     MOSI → 19
+    MISO →  21
     GND → 6
     RST → 22
     3.3v → 1
@@ -11,3 +12,6 @@ may need a buzzer at pin
     Buzzer → 16
 
 button pins are irrelevant
+
+    Buttons
+        40,38,36,37,35
