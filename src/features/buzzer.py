@@ -7,7 +7,11 @@ GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BOARD)
 buzzer=16
 GPIO.setup(buzzer,GPIO.OUT)
-#Run forever loop
+
+GPIO.output(buzzer,GPIO.HIGH)
+sleep(0.5) # Delay in seconds
+GPIO.output(buzzer,GPIO.LOW)
+sleep(0.5)
 if (bt.pressed):
     GPIO.output(buzzer,GPIO.HIGH)
     sleep(0.5) # Delay in seconds
