@@ -1,8 +1,8 @@
 import RPi.GPIO as GPIO # Import Raspberry Pi GPIO library
 
-def button_callback(channel,pin):
+def button_callback(channel):
     print("Button was pushed!")
-    print("pin number   " + pin)
+    print("pin number   " + channel)
 
 GPIO.setwarnings(False) # Ignore warning for now
 GPIO.setmode(GPIO.BOARD) # Use physical pin numbering
