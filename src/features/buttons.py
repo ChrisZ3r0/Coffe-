@@ -1,8 +1,11 @@
 import RPi.GPIO as GPIO # Import Raspberry Pi GPIO library
 
+pressed = False
+
 def button_callback(channel):
     print("Button was pushed!")
     print("pin number   " + str(channel))
+    pressed = True
 
 GPIO.setwarnings(False) # Ignore warning for now
 GPIO.setmode(GPIO.BOARD) # Use physical pin numbering
@@ -19,5 +22,5 @@ GPIO.add_event_detect(38,GPIO.RISING,callback=button_callback) # Setup event on 
 GPIO.add_event_detect(40,GPIO.RISING,callback=button_callback) # Setup event on pin 10 rising edge
 
 message = input("Press enter to quit\n\n") # Run until someone presses enter
-
+pressed = False
 GPIO.cleanup() # Clean up
