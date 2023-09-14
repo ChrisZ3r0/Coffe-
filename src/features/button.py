@@ -5,7 +5,7 @@ from time import sleep
 GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BOARD)
 #Set Button and LED pins
-Button = 40
+Button = 38
 Buzzer = 16
 #Setup Button and LED
 GPIO.setup(Button,GPIO.IN,pull_up_down=GPIO.PUD_UP)

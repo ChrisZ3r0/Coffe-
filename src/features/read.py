@@ -4,17 +4,24 @@ import RPi.GPIO as GPIO
 from mfrc522 import SimpleMFRC522
 import readcsv as data
 
+#print("before reader")
+
+
 reader = SimpleMFRC522()
 
+#print("after reader")
+
 try:
-        id, text = reader.read()
-        print(id)
-        print(text)
+	print("in try")
+	id, text = reader.read()
+	print("readiinggg")
+	print(id)
+#	print(text)
 
 
 
-        print("Reading id...")
-        data.load_data()
+	print("Reading id...")
+	data.load_data()
 
         
 
