@@ -12,17 +12,17 @@ reader = SimpleMFRC522()
 #print("after reader")
 
 try:
-	print("in try")
 	id, text = reader.read()
-	print("readiinggg")
-	print(id)
+	print(str(id))
 #	print(text)
 
-
-
 	print("Reading id...")
-	data.load_data()
+	#data.load_data()
 
+	if(data.checkdata(str(id))):
+		print("yey benne van")
+	else:
+		print("yeet nincs benne")
         
 
 

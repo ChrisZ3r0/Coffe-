@@ -1,6 +1,10 @@
 # importing the module
 import csv
 
+user = []
+balance = []
+cardid = []
+
 def load_data():
 
 # open the file in read mode
@@ -10,9 +14,6 @@ def load_data():
     file = csv.DictReader(filename)
 
 # creating empty lists
-    user = []
-    balance = []
-    cardid = []
 
 # iterating over each row and append
 # values to empty list
@@ -25,3 +26,13 @@ def load_data():
     print('User:', user)
     print('Balance:', balance)
     print('Cardid:', cardid)
+
+
+def checkdata(checking):
+    load_data()
+    if checking in cardid:
+        print("True")
+        return True
+    else:
+        print("false")
+        return False
