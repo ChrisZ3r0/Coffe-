@@ -8,7 +8,7 @@ cardid = []
 def load_data():
 
 # open the file in read mode
-    filename = open('../../data/payed.csv', 'r')
+    filename = open('../data/payed.csv', 'r')
 
 # creating dictreader object
     file = csv.DictReader(filename)
@@ -23,9 +23,9 @@ def load_data():
         cardid.append(col['card_id'])
 
 # printing lists
-    print('User:', user)
-    print('Balance:', balance)
-    print('Cardid:', cardid)
+    # print('User:', user)
+    # print('Balance:', balance)
+    # print('Cardid:', cardid)
 
 
 def checkdata(checking):
