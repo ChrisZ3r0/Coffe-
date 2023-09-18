@@ -5,6 +5,7 @@ import features.button as bt
 
 
 def main():
+    bt.beep()
     print("Hello world!")
     if(read.rfidread()):
         print("Reading buttons to know wich coffe you get")
