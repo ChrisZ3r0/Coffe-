@@ -38,6 +38,11 @@ def initial():
     # previous_button_state4 = GPIO.input(Button4)
     # previous_button_state5 = GPIO.input(Button5)
 
+def startbeep():
+    initial()
+    GPIO.output(buzzer,GPIO.HIGH)
+    time.sleep(0.1)
+    GPIO.output(buzzer,GPIO.LOW)
 def beep():
     GPIO.output(buzzer,GPIO.HIGH)
     time.sleep(0.1)
