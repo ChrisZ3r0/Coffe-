@@ -5,17 +5,18 @@ import features.button as bt
 
 
 def main():
-    bt.startbeep()
-    print("Hello world!")
-    if(read.rfidread()):
+    while True:
         bt.startbeep()
-        print("Reading buttons to know wich coffe you get")
-        bt.buttonpush()
+        print("Hello world!")
+        if(read.rfidread()):
+            bt.startbeep()
+            print("Reading buttons to know wich coffe you get")
+            bt.buttonpush()
 
         
 
-    else:
-        print("yeet again")
+        else:
+            print("yeet again")
 
 
 if __name__ == "__main__":
