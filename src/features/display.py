@@ -1,26 +1,21 @@
-#!/usr/bin/python3
-
-from  signal import signal, SIGTERM, SIGHUP, pause
-from rpi_lcd import LCD
+from RPLCD.i2c import CharLCD
 import time
-from features import readcsv as text
-lcd = LCD()
+import readcsv as text
 
-def safe_exit(signum, frame):
-    exit(1)
+lcd = CharLCD('PCF8574', 0x27)
 
-signal(SIGTERM,safe_exit)
-signal(SIGHUP,safe_exit)
+lcd = CharLCD(i2c_expander='PCF8574', address=0x27, port=1,
+              cols=16, rows=2, dotsize=8,
+              charmap='A02',
+              auto_linebreaks=True,
+              backlight_enabled=True)
 
-try:
-     
-    # if (kave.size > 16)
-    lcd.text(kave, 1)
-    #lcd.text("Raspberry pnjhghjgiii!!!", 2)
-    time.sleep(4.5)
 
-except KeyboardInterrupt:
-    pass
 
-finally:
+
+kave,available,price = text.load_coffe()
+for i in range(len(kave)):
+    lcd.write_string(str(kave[i])+ "\r\n \t\t\t\t\t\t")
+    lcd.write_string(str(price[i]) + " FT")
+    time.sleep(1)
     lcd.clear()
