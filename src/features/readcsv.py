@@ -32,7 +32,7 @@ def load_user_data():
     # print('Cardid:', cardid)
 
 def load_coffe():
-    filename = open('../../data/kavek.csv', 'r')
+    filename = open('../data/kavek.csv', 'r')
     file = csv.DictReader(filename)
     for col in file:
         kave.append(col['coffe'])
