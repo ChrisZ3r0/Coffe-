@@ -5,7 +5,11 @@ user = []
 balance = []
 cardid = []
 
-def load_data():
+kave = []
+buyable = []
+price = []
+
+def load_user_data():
 
 # open the file in read mode
     filename = open('../data/payed.csv', 'r')
@@ -27,9 +31,18 @@ def load_data():
     # print('Balance:', balance)
     # print('Cardid:', cardid)
 
+def load_coffe():
+    filename = open('../../data/kavek.csv', 'r')
+    file = csv.DictReader(filename)
+    for col in file:
+        kave.append(col['coffe'])
+        buyable.append(col['available'])
+        price.append(col['price'])
+
+    return kave,buyable,price
 
 def checkdata(checking):
-    load_data()
+    load_user_data()
     if checking in cardid:
         print("True")
         return True

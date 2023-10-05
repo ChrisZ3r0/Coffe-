@@ -1,5 +1,7 @@
 from RPLCD.i2c import CharLCD
 import time
+import readcsv as text
+
 lcd = CharLCD('PCF8574', 0x27)
 
 lcd = CharLCD(i2c_expander='PCF8574', address=0x27, port=1,
@@ -8,15 +10,12 @@ lcd = CharLCD(i2c_expander='PCF8574', address=0x27, port=1,
               auto_linebreaks=True,
               backlight_enabled=True)
 
-lcd.write_string('Hello world')
-time.sleep(2)
-lcd.clear()
-lcd.write_string('Hello\r\n  World!')
-time.sleep(2)
-lcd.clear()
-lcd.write_string('Hello\n\r  World!')
-time.sleep(2)
-lcd.clear()
-lcd.write_string('Helloworldhowa\n\rzoutodaaaz')
-time.sleep(2)
-lcd.clear()
+
+
+
+kave,available,price = text.load_coffe()
+for i in range(len(kave)):
+    lcd.write_string(str(kave[i])+ "\r\n \t\t\t\t\t\t")
+    lcd.write_string(str(price[i]) + " FT")
+    time.sleep(1)
+    lcd.clear()
