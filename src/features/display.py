@@ -28,6 +28,13 @@ def write_starting_message():
 
     lcd.write_string("Kartyat kerek")
 
+def write_thanks_message():
+    initial()
+
+    lcd.write_string("Koszonom")
+
+
+
 def write_coffee_and_price():
     initial()
 
