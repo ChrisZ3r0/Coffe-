@@ -8,7 +8,7 @@ def rfidread():
 	reader = SimpleMFRC522()
 	try:
 		id, text = reader.read()
-		print(str(id))
+		# print(str(id))
 
 		print("Reading id...")
 
