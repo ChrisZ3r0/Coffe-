@@ -1,6 +1,8 @@
 import RPi.GPIO as GPIO
 import time
 from features import beep
+import features.display as dp
+
 def initial():
     GPIO.setmode(GPIO.BOARD)
 
@@ -61,7 +63,7 @@ def buttonpush():
                 previous_button_state1 = button_state1
                 if button_state1 == GPIO.HIGH:
                     print("button1 released")
-                    
+                    dp.buttonpushsignal()
                     beep.standardSound()
                     return 1
             if button_state2 != previous_button_state2:
@@ -69,35 +71,35 @@ def buttonpush():
                 if button_state2 == GPIO.HIGH:
                     print("button2 released")
                     beep.standardSound()
-                   
+                    dp.buttonpushsignal()
                     return 2
             if button_state3 != previous_button_state3:
                 previous_button_state3 = button_state3
                 if button_state3 == GPIO.HIGH:
                     print("button3 released")
                     beep.standardSound()
-                   
+                    dp.buttonpushsignal()
                     return 3
             if button_state4 != previous_button_state4:
                 previous_button_state4 = button_state4
                 if button_state4 == GPIO.HIGH:
                     print("button4 released")
                     beep.standardSound()
-                
+                    dp.buttonpushsignal()
                     return 4
             if button_state5 != previous_button_state5:
                 previous_button_state5 = button_state5
                 if button_state5 == GPIO.HIGH:
                     print("button5 released")
                     beep.standardSound()
-
+                    dp.buttonpushsignal()
                     return 5
             if exitbutton_state != previous_exit_button_state:
                 previous_exit_button_state = exitbutton_state
                 if exitbutton_state == GPIO.HIGH:
                     print("exit released")
                     beep.standardSound()
-
+                    dp.buttonpushsignal()
                     exit = not exit
 
     except KeyboardInterrupt:
