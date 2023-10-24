@@ -24,15 +24,6 @@ def lcdinitial():
                   backlight_enabled=True)
 
 
-
-
-# kave,available,price = text.load_coffe()
-# for i in range(len(kave)):
-#     lcd.write_string(str(kave[i])+ "\r\n \t\t\t\t\t\t")
-#     lcd.write_string(str(price[i]) + " FT")
-#     time.sleep(1)
-#     lcd.clear()
-
 def write_starting_message():
     lcdinitial()
     global startsignal
