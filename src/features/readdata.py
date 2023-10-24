@@ -1,6 +1,6 @@
 import sqlite3
 import sys
-
+import datetime
 
 def load_coffee_db():
     conn = sqlite3.connect('/home/pi/Coffe-/data/mydatabase.db')
@@ -161,6 +161,24 @@ def getbuttons():
     conn.close()
     
     return coffeeid,coffee_nam,price,available,button_num
+
+def lastsevendays():
+
+    conn = sqlite3.connect('/home/pi/Coffe-/data/mydatabase.db')
+    cursor = conn.cursor()
+
+    # Calculate the date 7 days ago from the current date
+
+    seven_days_ago = datetime.datetime.now() - datetime.timedelta(days=7)
+    formatted_date = seven_days_ago.strftime('%Y.%m.%d')   
+    # Execute the SQL query
+
+    cursor.execute("SELECT * FROM coffeelog WHERE date >= ?", (formatted_date,))
+    data = cursor.fetchall()
+    for row in data:
+        print(row)
+
+def getcoffeetype():    
 
 if __name__ == '__main__':
     globals()[sys.argv[1]]()
