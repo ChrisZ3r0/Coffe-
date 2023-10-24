@@ -136,19 +136,18 @@ def getbuttons():
     cursor.execute("SELECT * FROM coffee WHERE button_num > 0 ORDER BY button_num ASC")
     data = cursor.fetchall()
 
-    cardid  =   []
+    coffeeid  =   []
     coffee_nam  =   []
     price   =   []
     available   =   []
     button_num  =   []
 
-    for row in data:
-        print(row)
+    
 
     for row in data:
         for i in range(len(row)):
             if i==0:
-                cardid.append(row[i])
+                coffeeid.append(row[i])
             elif i==1:
                 coffee_nam.append(row[i])
             elif i==2:
@@ -160,7 +159,8 @@ def getbuttons():
 
     cursor.close()
     conn.close()
-
+    
+    return coffeeid,coffee_nam,price,available,button_num
 
 if __name__ == '__main__':
     globals()[sys.argv[1]]()

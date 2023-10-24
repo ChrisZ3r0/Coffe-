@@ -44,19 +44,19 @@ def write_coffee_and_price():
     lcdinitial()
 
 
-    coffeid,kave,price,available,button_num = data.load_button_num()
+    coffeid,kave,price,available,button_num = data.getbuttons()
     # kave,available,price = text.load_coffe()
 
     print(coffesignal)
 
-    for i, j in zip(kave,price):
+    for i, j, k in zip(button_num,kave,price):
         if not coffesignal:
             break
         
         lcd.clear()
-        lcd.write_string(" " + button_num + ".")
-        lcd.write_string(str(i) + "\r\n \t\t\t\t\t\t")
-        lcd.write_string(str(j) + " FT")
+        lcd.write_string(" " + str(i) + ". ")
+        lcd.write_string(str(j) + "\r\n \t\t\t\t\t\t")
+        lcd.write_string(str(k) + " FT")
         time.sleep(0.75)
         lcd.clear()
     
