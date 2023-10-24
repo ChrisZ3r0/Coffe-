@@ -8,7 +8,7 @@ def load_coffee_db():
     cursor.execute("SELECT * FROM coffee")
     data = cursor.fetchall()
 
-    cardid  =   []
+    coffeeid  =   []
     coffee_nam  =   []
     price   =   []
     available   =   []

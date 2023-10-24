@@ -1,7 +1,7 @@
 from RPLCD.i2c import CharLCD
 import time
 from features import readcsv as text
-
+from features import readdata as data
 def signals_initial():
 
     global startsignal
@@ -52,16 +52,19 @@ def write_thanks_message():
 def write_coffee_and_price():
     lcdinitial()
 
-    kave,available,price = text.load_coffe()
+
+    coffeid,kave,price,available,button_num = data.load_button_num()
+    # kave,available,price = text.load_coffe()
 
     print(coffesignal)
+
     for i, j in zip(kave,price):
         if not coffesignal:
             break
         
         lcd.clear()
-        lcd.write_string("")
-        lcd.write_string(str(i)+ "\r\n \t\t\t\t\t\t")
+        lcd.write_string(" " + button_num + ".")
+        lcd.write_string(str(i) + "\r\n \t\t\t\t\t\t")
         lcd.write_string(str(j) + " FT")
         time.sleep(0.75)
         lcd.clear()
