@@ -191,4 +191,4 @@ def getcoffeetype(thetype):
             return row[1]
 
 if __name__ == '__main__':
-    globals()[sys.argv[1]]()
+    globals()[sys.argv[1]]
