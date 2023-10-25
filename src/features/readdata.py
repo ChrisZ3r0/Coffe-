@@ -178,7 +178,17 @@ def lastsevendays():
     for row in data:
         print(row)
 
-def getcoffeetype():    
+def getcoffeetype(thetype):    
+
+    conn = sqlite3.connect('/home/pi/Coffe-/data/mydatabase.db')
+    cursor = conn.cursor()
+
+    cursor.execute("SELECT coffee.id,coffee.coffee_name FROM coffeelog,coffee WHERE coffeelog.type == coffee.id")
+    data = cursor.fetchall()
+
+    for row in data:
+        if(int(thetype) == row[0]):
+            return row[1]
 
 if __name__ == '__main__':
     globals()[sys.argv[1]]()
