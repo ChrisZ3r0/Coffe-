@@ -190,5 +190,68 @@ def getcoffeetype(thetype):
         if(int(thetype) == row[0]):
             return row[1]
 
+#def getcoffeeprice():
+
+def checkcardid(rfidcardnum):
+    isonlist = False
+
+    conn = sqlite3.connect('/home/pi/Coffe-/data/mydatabase.db')
+    cursor = conn.cursor()
+    
+    cursor.execute("SELECT * FROM users")
+    data = cursor.fetchall()
+
+    cardid  =   []
+    cardnumber   =   []
+    password  =   []
+
+    for row in data:
+        for i in range(len(row)):
+            if i==0:
+                cardid.append(row[i])
+            elif i==1:
+                cardnumber.append(row[i])
+            elif i==2:
+                password.append(row[i])
+
+    cursor.close()
+    conn.close()
+
+    while row in data:
+        if rfidcardnum == row:
+            isonlist=True
+            break
+
+
+    return isonlist
+
+def checkcanbuy():
+    affordable = False
+
+    conn = sqlite3.connect('/home/pi/Coffe-/data/mydatabase.db')
+    cursor = conn.cursor()
+    
+    cursor.execute("SELECT * FROM users")
+    data = cursor.fetchall()
+
+    cardid  =   []
+    cardnumber   =   []
+    password  =   []
+
+    for row in data:
+        for i in range(len(row)):
+            if i==0:
+                cardid.append(row[i])
+            elif i==1:
+                cardnumber.append(row[i])
+            elif i==2:
+                password.append(row[i])
+
+    cursor.close()
+    conn.close()
+
+
+    return isaffordable
+
 if __name__ == '__main__':
     globals()[sys.argv[1]]
