@@ -226,7 +226,7 @@ def checkcardid(rfidcardnum):
     return isonlist
 
 def checkcanbuy():
-    affordable = False
+    isaffordable = False
 
     conn = sqlite3.connect('/home/pi/Coffe-/data/mydatabase.db')
     cursor = conn.cursor()
