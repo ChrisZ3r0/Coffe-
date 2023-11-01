@@ -196,14 +196,34 @@ def getcoffeeprice():
 
     conn = sqlite3.connect('/home/pi/Coffe-/data/mydatabase.db')
     cursor = conn.cursor()
-
-    cursor.execute("SELECT coffee.id,coffee.price FROM coffeelog,coffee WHERE coffeelog.type == coffee.id")
+    
+    cursor.execute("SELECT * FROM coffee WHERE button_num > 0 ORDER BY button_num ASC")
     data = cursor.fetchall()
 
-    for row in data:
-        if(int(thetype) == row[0]):
-            return row[1]
+    coffeeid  =   []
+    coffee_nam  =   []
+    price   =   []
+    available   =   []
+    button_num  =   []
 
+    
+
+    for row in data:
+        for i in range(len(row)):
+            if i==0:
+                coffeeid.append(row[i])
+            elif i==1:
+                coffee_nam.append(row[i])
+            elif i==2:
+                price.append(row[i])
+            elif i==3:
+                available.append(row[i])
+            elif i==4:
+                button_num.append(row[i])
+
+    cursor.close()
+    conn.close()
+    
     return price
 
 def checkcardid(rfidcardnum):
