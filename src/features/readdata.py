@@ -289,9 +289,9 @@ def checkcanbuy(buttonnumber):
 
     price=getcoffeeprice()
 
-    if price[buttonnumber] > money
+    if price[buttonnumber] > money:
         isaffordable = True
-    else
+    else:
         isaffordable = False
 
     return isaffordable
