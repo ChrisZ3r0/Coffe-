@@ -41,7 +41,7 @@ def load_users_db():
     cardid  =   []
     cardnumber   =   []
     password  =   []
-
+    money = []
     for row in data:
         for i in range(len(row)):
             if i==0:
@@ -50,6 +50,8 @@ def load_users_db():
                 cardnumber.append(row[i])
             elif i==2:
                 password.append(row[i])
+            elif i==3:
+                money.append(row[i])
 
     cursor.close()
     conn.close()
@@ -190,7 +192,10 @@ def getcoffeetype(thetype):
         if(int(thetype) == row[0]):
             return row[1]
 
-#def getcoffeeprice():
+def getcoffeeprice():
+
+
+    return price
 
 def checkcardid(rfidcardnum):
     isonlist = False
@@ -237,6 +242,7 @@ def checkcanbuy():
     cardid  =   []
     cardnumber   =   []
     password  =   []
+    money = []
 
     for row in data:
         for i in range(len(row)):
@@ -246,10 +252,14 @@ def checkcanbuy():
                 cardnumber.append(row[i])
             elif i==2:
                 password.append(row[i])
+            elif i==3:
+                money.append(row[i])
 
     cursor.close()
     conn.close()
 
+
+    if price >
 
     return isaffordable
 
