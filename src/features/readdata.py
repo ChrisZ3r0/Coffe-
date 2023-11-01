@@ -194,6 +194,15 @@ def getcoffeetype(thetype):
 
 def getcoffeeprice():
 
+    conn = sqlite3.connect('/home/pi/Coffe-/data/mydatabase.db')
+    cursor = conn.cursor()
+
+    cursor.execute("SELECT coffee.id,coffee.price FROM coffeelog,coffee WHERE coffeelog.type == coffee.id")
+    data = cursor.fetchall()
+
+    for row in data:
+        if(int(thetype) == row[0]):
+            return row[1]
 
     return price
 
@@ -230,7 +239,7 @@ def checkcardid(rfidcardnum):
 
     return isonlist
 
-def checkcanbuy():
+def checkcanbuy(buttonnumber):
     isaffordable = False
 
     conn = sqlite3.connect('/home/pi/Coffe-/data/mydatabase.db')
@@ -258,8 +267,12 @@ def checkcanbuy():
     cursor.close()
     conn.close()
 
+    price=getcoffeeprice()
 
-    if price >
+    if price[buttonnumber] > money
+        isaffordable = True
+    else
+        isaffordable = False
 
     return isaffordable
 
