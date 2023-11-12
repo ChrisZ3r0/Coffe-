@@ -39,5 +39,5 @@ If you cannot find this text, then just add it at the end of the `config.txt`
 For you to use this RFID, you have to run some commands in the terminal.
 
 Firstly:
-
+``sudo apt update``
 ```sudo apt update </br> sudo apt upgrade```
