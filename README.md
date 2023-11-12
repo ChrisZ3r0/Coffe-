@@ -41,3 +41,9 @@ For you to use this RFID, you have to run some commands in the terminal.
 Firstly:
 ``sudo apt update``
 ```sudo apt update </br> sudo apt upgrade```
+
+```
+function test() {
+  console.log("This code will have a copy button to the right of it");
+}
+```
