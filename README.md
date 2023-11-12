@@ -22,3 +22,22 @@ Here you have to navigate to interfacing options and then enable the SPI by sele
 
 Now, you have to `restart` the raspberry pi
 
+You can check if it activated correctly with this: 
+
+```lsmod | grep spi```
+
+If you see `spi_bcm2835` then everything should be good
+
+If not, then just do:
+
+```sudo nano /boot/config.txt```
+
+and then search for `dtparam=spi=on`. If it has a `#` before it, just remove it.
+
+If you cannot find this text, then just add it at the end of the `config.txt`
+
+For you to use this RFID, you have to run some commands in the terminal.
+
+Firstly:
+
+```sudo apt update </br> sudo apt upgrade```
