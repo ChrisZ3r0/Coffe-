@@ -40,7 +40,7 @@ If not, then just do:
 sudo nano /boot/config.txt
 ```
 
-and then search for `dtparam=spi=on`. If it has a `#` before it, just remove it.
+and then search for `dtparam=spi=on`. If it has a **#** before it, just remove it.
 
 If you cannot find this text, then just add it at the end of the `config.txt`
 
@@ -70,4 +70,26 @@ sudo pip3 install mfrc522
 
 Now everything should be installed, and you can test your RFID card reader.
 
-4. 
+4. LCD library setup
+
+For you to use the lcd display, you have to install a library for this code to work. This is all in all a great library, and here is how to set it up.
+
+```
+sudo pip install RPLCD
+```
+
+If you are using I2C *(like we do in the projekt)*, then you have to run the command below as well.
+
+```
+sudo apt-get install python-smbus
+```
+
+# Error handling
+
+If you get this error when you wanna **pip** install some package:
+
+`error: externally-managed-environment` 
+
+Then you just have to ad this to the end of **pip install *package* ** :
+
+`--break-system-packages`
