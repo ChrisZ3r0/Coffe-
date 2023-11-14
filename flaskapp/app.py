@@ -10,7 +10,12 @@ app.template_folder = template_path
 @app.route('/')
 def hello():
     return render_template('adminlog.html')
-
+@app.route('/userlog')
+def userlog():
+    return render_template('userlog.html')
+@app.route('/adminlog')
+def adminlog():
+    return render_template('adminlog.html')
 
 
 if __name__ == '__main__':
