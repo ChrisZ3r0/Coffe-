@@ -42,7 +42,7 @@ def registration():
 def adminlog():
     return render_template('adminlog.html')
 
-@app.route('/login', methods=['POST'])
+@app.route('/login/user', methods=['POST'])
 def userlogin():
     
     cardnumber   =   []
@@ -60,32 +60,48 @@ def userlogin():
     # Check the credentials against the database (replace with your actual database logic)
     if page_username in user_credentials and user_credentials[page_username] == page_password:
         # Redirect to user.html if the credentials are correct
-        return 'Hii you have logged in'
+        return render_template('user.html')
     else:
         # Redirect to a login error page or handle authentication failure
-        return 'error 444'
+        return 'Wrong username or password, please try'
 
-@app.route('/login', methods=['POST'])
+@app.route('/login/admin', methods=['POST'])
 def adminlogin():
 
     cardnumber   =   []
     password  =   []
 
-    _,cardnumber,password,_ = rd.load_admin_db()
-
-    user_credentials = {key: value for key, value in zip(cardnumber, password)}
+    _,cardnumber,password = rd.load_admin_db()
+    admin_credentials = {key: value for key, value in zip(cardnumber, password)}
 
     # Retrieve the username and password from the form
     page_username = request.form.get('username')
     page_password = request.form.get('password')
 
     # Check the credentials against the database (replace with your actual database logic)
-    if page_username in user_credentials and user_credentials[page_username] == page_password:
+    if page_username in admin_credentials and admin_credentials[page_username] == page_password:
         # Redirect to user.html if the credentials are correct
-        return 'Hii you have logged in'
+        return render_template('admin.html')
     else:
         # Redirect to a login error page or handle authentication failure
-        return 'error 444'
+        return 'Wrong username or password, please try'
+
+
+@app.route('/adminadduser', methods=['GET', 'POST'])
+def adminadduser():
+    if request.method == 'POST':
+        # Form was submitted, process the data
+        name = request.form.get('nev')
+        cardnumber = request.form.get('neptun')
+        birth_date = request.form.get('date')
+
+        # Now you can use these variables as needed
+        print(f"Name: {name}, Neptun: {cardnumber}, Birth Date: {birth_date}")
+
+        # Add your logic to save the data or perform other actions
+
+    return render_template('admin.html')
+
 
 
 if __name__ == '__main__':

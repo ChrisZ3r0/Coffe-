@@ -81,6 +81,8 @@ def load_admin_db():
     cursor.close()
     conn.close()
 
+    return cardid, cardnumber, password
+
 def load_coffeelog_db():
     conn = sqlite3.connect('/home/pi/Coffe-/data/mydatabase.db')
     cursor = conn.cursor()
