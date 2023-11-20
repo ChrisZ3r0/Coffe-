@@ -184,6 +184,22 @@ def lastsevendays():
     for row in data:
         print(row)
 
+def lastsevendays_withfilter(userid):
+
+    conn = sqlite3.connect('/home/pi/Coffe-/data/mydatabase.db')
+    cursor = conn.cursor()
+
+    # Calculate the date 7 days ago from the current date
+
+    seven_days_ago = datetime.datetime.now() - datetime.timedelta(days=7)
+    formatted_date = seven_days_ago.strftime('%Y.%m.%d')   
+    # Execute the SQL query
+
+    cursor.execute("SELECT * FROM coffeelog WHERE date >= ? AND user_id = ?", (formatted_date, userid))
+    data = cursor.fetchall()
+    for row in data:
+        print(row)
+
 def getcoffeetype(thetype):    
 
     conn = sqlite3.connect('/home/pi/Coffe-/data/mydatabase.db')

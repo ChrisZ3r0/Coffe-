@@ -18,5 +18,27 @@
     
 
         <a href="{{url_for('adminlog')}}" title="Alogin">Admin login </a>
+
+
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $("#readRFID").click(function() {
+                // Make an AJAX request to the server
+                $.ajax({
+                    url: "{{ url_for('read_rfid') }}",
+                    type: "POST",
+                    success: function(response) {
+                        alert(response);  // Display the response from the server (optional)
+                    },
+                    error: function(error) {
+                        console.error(error);
+                    }
+                });
+            });
+        });
+    </script>
+
+    
     </body>
 </html>

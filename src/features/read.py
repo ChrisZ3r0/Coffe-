@@ -21,3 +21,14 @@ def rfidread():
 
 	finally:
         	GPIO.cleanup()
+
+def read_id_for_server():
+	reader = SimpleMFRC522()
+	try:
+		id, text = reader.read()
+
+		return id
+	finally:
+    		GPIO.cleanup()
+
+			

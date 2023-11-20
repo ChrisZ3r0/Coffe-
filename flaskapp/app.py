@@ -4,7 +4,7 @@ import sys
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from src.features import readdata as rd
-
+from src.features.read import read_id_for_server as serverread
 
 app = Flask(__name__)
 
@@ -102,7 +102,14 @@ def adminadduser():
 
     return render_template('admin.html')
 
-
+@app.route('/read_rfid', methods=['POST'])
+def read_rfid():
+    # Add your RFID reading logic here
+    # You can call your Python function or interact with your RFID reader
+    new_user_id = serverread()
+    # Return a response to the client
+    return "RFID reading initiated on the server   ", new_user_id
+ 
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=5000)
