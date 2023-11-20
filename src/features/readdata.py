@@ -311,10 +311,15 @@ def checkcanbuy(buttonnumber):
 
     if price[buttonnumber] > money:
         isaffordable = True
+        # set_user_money()
     else:
         isaffordable = False
 
     return isaffordable
+
+def set_user_money():
+    
+    print('set')
 
 if __name__ == '__main__':
     globals()[sys.argv[1]]
