@@ -99,7 +99,8 @@ def adminadduser():
         print(f"Name: {name}, Neptun: {cardnumber}, Birth Date: {birth_date}")
 
         # Add your logic to save the data or perform other actions
-
+        # Here we can call the function to add it to the database
+    
     return render_template('admin.html')
 
 @app.route('/read_rfid', methods=['POST'])
