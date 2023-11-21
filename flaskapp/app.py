@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for
 import os
 import sys
+from flask import jsonify
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from src.features import readdata as rd
@@ -95,8 +96,12 @@ def adminadduser():
         cardnumber = request.form.get('neptun')
         birth_date = request.form.get('date')
 
+
+        # Extract RFID value from the form submission
+        rfidnumber = request.form.get('rfidInput')
+
         # Now you can use these variables as needed
-        print(f"Name: {name}, Neptun: {cardnumber}, Birth Date: {birth_date}")
+        print(f"Name: {name}, Neptun: {cardnumber}, Birth Date: {birth_date}, RFIDnumber: {rfidnumber}")
 
         # Add your logic to save the data or perform other actions
         # Here we can call the function to add it to the database
@@ -109,8 +114,7 @@ def read_rfid():
     # You can call your Python function or interact with your RFID reader
     new_user_id = serverread()
     # Return a response to the client
-    return "RFID reading initiated on the server   ", new_user_id
- 
+    return jsonify({"rfid": new_user_id}) 
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=5000)

@@ -2,7 +2,7 @@
 
 import RPi.GPIO as GPIO
 from mfrc522 import SimpleMFRC522
-from features import readcsv as data
+from src.features import readcsv as data
 
 def rfidread():
 	reader = SimpleMFRC522()

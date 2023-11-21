@@ -12,12 +12,17 @@
     <div><label>Név: <input name="nev" type="text" pattern="[A-Za-zÁÉÍÓÖŐÚÜŰáéíóöőúüű\s]+" title="Please enter a valid name (letters and spaces only)" placeholder="John Doe" required="required" /></label></div>
     <div><label>Neptun kód: <input name="neptun" type="text" pattern="[A-Za-z0-9]+" title="Please enter a valid Neptun code (letters and numbers only)" placeholder="H12345678" required="required" /></label></div>
     <div><label>Születési dátum: <input name="date" type="text" pattern="\d{4}\.\d{2}\.\d{2}" title="Please enter a valid date (yyyy.mm.dd)" placeholder="2002.07.23" required="required" /></label></div>
-   
+    <div>
+        <button type="button" class="login-button" id="readRFID">Read RFID</button>
+                <!-- Display RFID number in this div -->
+                <div id="rfidDisplay"></div>
+    </div>
     <div><button type="submit" class="login-button">Regisztrálás</button></div>
+    <input type="hidden" id="rfidInput" name="rfidInput" readonly>
     </fieldset></form>
     
 
-        <a href="{{url_for('adminlog')}}" title="Alogin">Admin login </a>
+    <a href="{{url_for('adminlog')}}" title="Alogin">Admin login </a>
 
 
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
@@ -28,17 +33,27 @@
                 $.ajax({
                     url: "{{ url_for('read_rfid') }}",
                     type: "POST",
+                    dataType: "json",  // Specify JSON dataType
                     success: function(response) {
-                        alert(response);  // Display the response from the server (optional)
+                        // Set the RFID number to the hidden input field
+                        $("#rfidInput").val(response.rfid);
+
+                        // Display the RFID number in the designated div
+                        $("#rfidDisplay").text("RFID Number: " + response.rfid);
                     },
                     error: function(error) {
                         console.error(error);
                     }
                 });
             });
+
+            $("#registerButton").click(function() {
+                // Submit the form when the "Register" button is clicked
+                $("#adminAddUserForm").submit();
+            });
         });
     </script>
-
+    
     
     </body>
 </html>
