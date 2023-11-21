@@ -1,34 +1,57 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-            <link rel="stylesheet" type="text/css" href="admin.css">           
-    </head>
-    <body>
-        <h1>Admin felület</h1>
-        <form action="{{ url_for('adminadduser') }}" method="post">
-      <fieldset >
-        <legend>Új felhasználó regisztrálása</legend>
-    <div><label>Név: <input name="nev" type="text" pattern="[A-Za-zÁÉÍÓÖŐÚÜŰáéíóöőúüű\s]+" title="Please enter a valid name (letters and spaces only)" placeholder="John Doe" required="required" /></label></div>
-    <div><label>Neptun kód: <input name="neptun" type="text" pattern="[A-Za-z0-9]+" title="Please enter a valid Neptun code (letters and numbers only)" placeholder="H12345678" required="required" /></label></div>
-    <div><label>Születési dátum: <input name="date" type="text" pattern="\d{4}\.\d{2}\.\d{2}" title="Please enter a valid date (yyyy.mm.dd)" placeholder="2002.07.23" required="required" /></label></div>
-    <div>
-        <button type="button" class="login-button" id="readRFID">Read RFID</button>
-                <!-- Display RFID number in this div -->
-                <div id="rfidDisplay"></div>
-    </div>
-    <div><button type="submit" class="login-button">Regisztrálás</button></div>
-    <input type="hidden" id="rfidInput" name="rfidInput" readonly>
-    </fieldset></form>
-    
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="admin.css">           
+</head>
+<body>
+    <h1>Admin felület</h1>
+    <form id="adminAddUserForm" action="{{ url_for('adminadduser') }}" method="post">
+        <fieldset>
+            <legend>Új felhasználó regisztrálása</legend>
+            <div><label>Név: <input name="nev" type="text" pattern="[A-Za-zÁÉÍÓÖŐÚÜŰáéíóöőúüű\s]+" title="Please enter a valid name (letters and spaces only)" placeholder="John Doe" required="required" /></label></div>
+            <div><label>Kártyaszám: <input name="card" type="text" pattern="[A-Za-z0-9]+" title="Please enter a valid Neptun code (letters and numbers only)" placeholder="H12345678" required="required" /></label></div>
+            <div><label>Születési dátum: <input name="date" type="text" pattern="\d{4}\.\d{2}\.\d{2}" title="Please enter a valid date (yyyy.mm.dd)" placeholder="2002.07.23" required="required" /></label></div>
+            <div>
+                <label>RFID szám: <input type="text" id="rfidForMoney" name="rfidForMoney" required="required" readonly></label>
+            </div>
+            <div><button type="submit" class="login-button">Regisztrálás</button></div>
+            <input type="hidden" id="rfidInput" name="rfidInput" required readonly>
+        </fieldset>
+    </form>
+
+    <!-- New fieldset for adding money -->
+    <form id="addMoneyForm" action="{{ url_for('addmoney') }}" method="post">
+        <fieldset>
+            <legend>Pénz hozzáadása</legend>
+            <div>
+                <label>RFID szám: <input type="text" id="rfidForMoney" name="rfidForMoney" readonly></label>
+            </div>
+            <div>
+                <label>Összeg: <input type="number" name="moneyAmount" required="required"></label>
+            </div>
+            <div>
+                <button type="button" class="login-button" id="addMoneyButton">Pénz hozzáadása</button>
+            </div>
+        </fieldset>
+    </form>
+
+    <button type="button" class="login-button" id="readRFID">Read RFID</button>
 
     <a href="{{url_for('adminlog')}}" title="Alogin">Admin login </a>
 
+    <!-- Popup for RFID reading -->
+    <div id="rfidPopup" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: white; padding: 20px; border: 1px solid #ccc;">
+        Please use RFID card...
+    </div>
 
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script>
         $(document).ready(function() {
             $("#readRFID").click(function() {
+                // Show the popup
+                $("#rfidPopup").show();
+    
                 // Make an AJAX request to the server
                 $.ajax({
                     url: "{{ url_for('read_rfid') }}",
@@ -37,23 +60,41 @@
                     success: function(response) {
                         // Set the RFID number to the hidden input field
                         $("#rfidInput").val(response.rfid);
-
+    
                         // Display the RFID number in the designated div
                         $("#rfidDisplay").text("RFID Number: " + response.rfid);
+    
+                        // Set the RFID number to the readonly field in the second form
+                        $("#rfidForMoney").val(response.rfid);
+    
+                        // Close the popup after successful reading
+                        $("#rfidPopup").hide();
                     },
                     error: function(error) {
                         console.error(error);
+    
+                        // Close the popup in case of an error
+                        $("#rfidPopup").hide();
                     }
                 });
             });
-
+    
+            $("#addMoneyButton").click(function() {
+                // Submit the second form when the "Pénz hozzáadása" button is clicked
+                $("#addMoneyForm").submit();
+            });
+    
             $("#registerButton").click(function() {
-                // Submit the form when the "Register" button is clicked
-                $("#adminAddUserForm").submit();
+                // Check if the hidden field is not empty
+                if ($("#rfidInput").val() === "") {
+                    // Show an error message or take appropriate action
+                    alert("Please read RFID before registering.");
+                } else {
+                    // Submit the form when the "Regisztrálás" button is clicked
+                    $("#adminAddUserForm").submit();
+                }
             });
         });
     </script>
-    
-    
-    </body>
+</body>
 </html>

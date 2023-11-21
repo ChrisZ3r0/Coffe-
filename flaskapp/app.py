@@ -93,7 +93,7 @@ def adminadduser():
     if request.method == 'POST':
         # Form was submitted, process the data
         name = request.form.get('nev')
-        cardnumber = request.form.get('neptun')
+        cardnumber = request.form.get('card')
         birth_date = request.form.get('date')
 
 
@@ -101,7 +101,7 @@ def adminadduser():
         rfidnumber = request.form.get('rfidInput')
 
         # Now you can use these variables as needed
-        print(f"Name: {name}, Neptun: {cardnumber}, Birth Date: {birth_date}, RFIDnumber: {rfidnumber}")
+        print(f"Name: {name}, Card: {cardnumber}, Birth Date: {birth_date}, RFIDnumber: {rfidnumber}")
 
         # Add your logic to save the data or perform other actions
         # Here we can call the function to add it to the database
@@ -115,6 +115,22 @@ def read_rfid():
     new_user_id = serverread()
     # Return a response to the client
     return jsonify({"rfid": new_user_id}) 
+
+@app.route('/addmoney', methods=['POST'])
+def addmoney():
+    if request.method == 'POST':
+        rfid_number = request.form.get('rfidForMoney')
+        money_amount = request.form.get('moneyAmount')
+
+        # Add your logic to update user's money based on rfid_number and money_amount
+        # For example, you might have a function like set_user_money(rfid_number, money_amount)
+
+        print( f"Added {money_amount} money to user with RFID: {rfid_number}")
+    return render_template('admin.html')
+
+    # Handle other HTTP methods or redirect as needed
+
+
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=5000)
