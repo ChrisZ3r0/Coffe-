@@ -5,7 +5,11 @@
     <link rel="stylesheet" type="text/css" href="admin.css">           
 </head>
 <body>
+    <a class="logout" href="{{url_for('adminlog')}}" title="Alogin">Log out </a>
+
     <h1>Admin felület</h1>
+
+    <div class="container">
     <form id="adminAddUserForm" action="{{ url_for('adminadduser') }}" method="post">
         <fieldset>
             <legend>Új felhasználó regisztrálása</legend>
@@ -35,10 +39,9 @@
             </div>
         </fieldset>
     </form>
-
+    </div>
     <button type="button" class="login-button" id="readRFID">Read RFID</button>
 
-    <a href="{{url_for('adminlog')}}" title="Alogin">Admin login </a>
 
     <!-- Popup for RFID reading -->
     <div id="rfidPopup" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: white; padding: 20px; border: 1px solid #ccc;">

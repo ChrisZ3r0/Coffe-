@@ -9,7 +9,7 @@ h1 {
 
 form {
     width: 300px;
-    margin: 0 auto;
+    margin: 20px;
     padding: 20px;
     background-color: #ffffff;
     border-radius: 5px;
@@ -19,7 +19,18 @@ form {
 fieldset {
     border:#ddd;
 }
-
+.container {
+    margin: 10px;
+    display: flex;
+  }
+.logout{
+    float: right;
+    padding: 10px 20px;
+    width:80px
+}
+.logout:hover {
+    background-color: #0056b3;
+}
 legend {
     color: #333;
     font-size: 18px;
