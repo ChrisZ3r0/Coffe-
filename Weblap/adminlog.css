@@ -1,6 +1,6 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #f2f2f2;
+    background-color: #eadbce;
     margin: 0;
     padding: 0;
     display: flex;
@@ -41,7 +41,7 @@ input[type="password"] {
     border-radius: 3px;
 }
 .login-button {
-    background-color: #007bff;
+    background-color: #998064;
     color: #fff;
     padding: 10px 20px;
     border: none;
@@ -49,5 +49,5 @@ input[type="password"] {
     cursor: pointer;
 }
 .login-button:hover {
-    background-color: #0056b3;
+    background-color: #77644e;
 }

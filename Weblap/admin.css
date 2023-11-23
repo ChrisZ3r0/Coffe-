@@ -1,6 +1,6 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #f0f0f0;
+    background-color: #eadbce;
 }
 h1 {
     color: #333;
@@ -26,10 +26,11 @@ fieldset {
 .logout{
     float: right;
     padding: 10px 20px;
-    width:80px
+    width:80px;
+    background-color: #998064;
 }
 .logout:hover {
-    background-color: #0056b3;
+    background-color: #77644e;
 }
 legend {
     color: #333;
@@ -51,7 +52,7 @@ input[type="text"] {
 }
 
 .login-button {
-    background-color: #007bff;
+    background-color: #998064;
     color: #fff;
     padding: 10px 20px;
     border: none;
@@ -59,7 +60,7 @@ input[type="text"] {
     cursor: pointer;
 }
 .login-button:hover {
-    background-color: #0056b3;
+    background-color: #77644e;
 }
 
 a {
