@@ -11,11 +11,13 @@ RFID
     SCK → 23
     MOSI → 19
     MISO →  21
-    GND → tápra
+    GND → táp
     RST → 22
-    3.3v → tápról
+    3.3v → táp
 
-Buzzer → 16
+Buzzer
+
+    pin 16
 
 Buttons
 
@@ -23,6 +25,16 @@ Buttons
     pin 38,
     pin 36,
     pin 37,
-    pin 35
+    pin 35,
+    pin 33,
     
 Minden eszköz GND lábát a GND line-ra kötjük a tápegységen
+
+Egy Led be van kötve, ellenállással csak az áramkörbe, hogy tudjuk hogy az eszköz áram alatt van.
+
+I2C Display
+
+    GND → táp
+    VCC → táp
+    SDA → pin 3
+    SCL → pin 5
