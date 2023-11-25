@@ -105,7 +105,6 @@ def adminlogin():
         # Redirect to a login error page or handle authentication failure
         return 'Wrong username or password, please try'
 
-
 @app.route('/adminadduser', methods=['GET', 'POST'])
 def adminadduser():
     if request.method == 'POST':
@@ -113,17 +112,25 @@ def adminadduser():
         name = request.form.get('nev')
         cardnumber = request.form.get('card')
         birth_date = request.form.get('date')
-
+        money = request.form.get('money')
 
         # Extract RFID value from the form submission
         rfidnumber = request.form.get('rfidInput')
 
+        # Check if the card number is already in use
+        if rd.is_card_number_in_use(rfidnumber):
+
         # Now you can use these variables as needed
-        print(f"Name: {name}, Card: {cardnumber}, Birth Date: {birth_date}, RFIDnumber: {rfidnumber}")
+            print(f"Name: {name}, Card: {cardnumber}, Birth Date: {birth_date}, RFIDnumber: {rfidnumber}, Money: {money}")
+        
+        # Continue with the registration process
+            rd.add_to_users(rfidnumber, cardnumber, birth_date, money, name)
 
         # Add your logic to save the data or perform other actions
         # Here we can call the function to add it to the database
-    
+        else:
+            return 'User is existing in the database'
+
     return render_template('admin.html')
 
 @app.route('/read_rfid', methods=['POST'])
@@ -165,4 +172,4 @@ def logout():
 
 
 if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0', port=80)
+    app.run(debug=True, host='0.0.0.0', port=5000)

@@ -14,8 +14,9 @@
         <fieldset>
             <legend>Új felhasználó regisztrálása</legend>
             <div><label>Név: <input name="nev" type="text" pattern="[A-Za-zÁÉÍÓÖŐÚÜŰáéíóöőúüű\s]+" title="Please enter a valid name (letters and spaces only)" placeholder="John Doe" required="required" /></label></div>
-            <div><label>Kártyaszám: <input name="card" type="text" pattern="[A-Za-z0-9]+" title="Please enter a valid Neptun code (letters and numbers only)" placeholder="H12345678" required="required" /></label></div>
+            <div><label>Kártyaszám: <input name="card" type="text" pattern="[A-Z]{1}[0-9]{8}" title="Please enter a valid Cardnumber (1 letter and numbers only example: H12345678)" placeholder="H12345678" required="required" /></label></div>
             <div><label>Születési dátum: <input name="date" type="text" pattern="\d{4}\.\d{2}\.\d{2}" title="Please enter a valid date (yyyy.mm.dd)" placeholder="2002.07.23" required="required" /></label></div>
+            <div><label>Kezdeti összeg: <input name="money" type="text" pattern="^[0-9]+$" title="Please enter the initial payment" placeholder="5000" required="required" /></label></div>
             <div>
                 <label>RFID szám: <input type="text" id="rfidForMoney" name="rfidForMoney" required="required" readonly></label>
             </div>
@@ -29,7 +30,7 @@
         <fieldset>
             <legend>Pénz hozzáadása</legend>
             <div>
-                <label>RFID szám: <input type="text" id="rfidForMoney" name="rfidForMoney" readonly></label>
+                <label>RFID szám: <input type="text" id="rfidForMoneyAdd" name="rfidForMoney" readonly></label>
             </div>
             <div>
                 <label>Összeg: <input type="number" name="moneyAmount" required="required"></label>
@@ -69,7 +70,10 @@
     
                         // Set the RFID number to the readonly field in the second form
                         $("#rfidForMoney").val(response.rfid);
-    
+                        
+                        // Set the RFID number to the readonly field in the second form
+                        $("#rfidForMoneyAdd").val(response.rfid);
+
                         // Close the popup after successful reading
                         $("#rfidPopup").hide();
                     },

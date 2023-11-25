@@ -40,6 +40,22 @@ def load_coffee_db():
     cursor.close()
     conn.close()
 
+def is_card_number_in_use(card_number):
+    conn = sqlite3.connect('/home/pi/Coffe-/data/mydatabase.db')
+    cursor = conn.cursor()
+
+    # Check if the card number already exists in the users table
+    cursor.execute("SELECT EXISTS(SELECT 1 FROM users WHERE cardnumber = ?)", (card_number,))
+    result = cursor.fetchone()[0]
+    print(result)
+    cursor.close()
+    conn.close()
+
+    if result==0:
+        return True
+    elif result ==1:
+        return False
+
 def load_users_db():
     conn = sqlite3.connect('/home/pi/Coffe-/data/mydatabase.db')
     cursor = conn.cursor()
@@ -69,6 +85,19 @@ def load_users_db():
     conn.close()
 
     return cardid,cardnumber,password,money,name
+
+def add_to_users(cardid, cardnumber, password, money, name):
+    conn = sqlite3.connect('/home/pi/Coffe-/data/mydatabase.db')
+    cursor = conn.cursor()
+
+    # Insert new user into the users table
+    cursor.execute("INSERT INTO users (id, cardnumber, password, money, Name) VALUES (?, ?, ?, ?, ?)",
+                   (cardid, cardnumber, password, money, name))
+
+    # Commit the changes and close the connection
+    conn.commit()
+    cursor.close()
+    conn.close()
 
 def load_admin_db():
     conn = sqlite3.connect('/home/pi/Coffe-/data/mydatabase.db')
