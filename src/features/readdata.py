@@ -42,6 +42,7 @@ def load_users_db():
     cardnumber   =   []
     password  =   []
     money = []
+    name = []
     for row in data:
         for i in range(len(row)):
             if i==0:
@@ -52,11 +53,13 @@ def load_users_db():
                 password.append(row[i])
             elif i==3:
                 money.append(row[i])
+            elif i==4:
+                name.append(row[i])
 
     cursor.close()
     conn.close()
 
-    return cardid,cardnumber,password,money
+    return cardid,cardnumber,password,money,name
 
 def load_admin_db():
     conn = sqlite3.connect('/home/pi/Coffe-/data/mydatabase.db')
