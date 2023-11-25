@@ -1,28 +1,19 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta charset="utf-8">
-        <link rel="stylesheet" type="text/css" href="user.css">
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.6.2/sql-wasm.min.js"></script>
-        <script src="user.js"></script>
+        <!-- Add your head content here -->
     </head>
     <body>
-        <h1>User felület</h1>
-        <table border="1"cellpadding="5" cellspacing="0">
-            <tr>
-                <th>Name</th>
-                <th>ID</th>
-                <th>Pénzösszeg</th>
-                
-            </tr>
-            <tr>
-                <td>Ádám</td>
-                <td>1</td>
-                <td>5000</td>
-            </tr>
-            <!-- The data will be fetched from SQLite and displayed here -->
-        </table>
-        <button onclick="addColumn()">Add Column</button>
-        <a href="{{url_for('userlog')}}" title="login">User login </a>
+        <div style="text-align: center;">
+            <h1>Welcome {{ user_data['name'].split()[1] }}</h1>
+            <p>Card Number: {{ user_data['cardnumber'] }}</p>
+            <p>Money: {{ user_data['money'] }}</p>
+            
+            <!-- Logout button -->
+            <form action="{{ url_for('logout') }}" method="post">
+                <input type="submit" value="Logout">
+            </form>
+
+        </div>
     </body>
 </html>

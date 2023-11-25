@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Coffee+</title>
+    <!-- Add any additional head content here -->
+</head>
+<body>
+    <div style="text-align: left; margin-top: 20px; margin-left: 20px;">
+        <img src="{{ url_for('static', filename='coffeeindex.svg') }}" alt="Coffee+" style="width: 50px; height: 50px;">
+        <a href="{{ url_for('default') }}"><button>Home</button></a>
+        <a href="{{ url_for('userlog') }}"><button>User Login</button></a>
+        <a href="{{ url_for('adminlog') }}"><button>Admin Login</button></a>
+        <a href="{{ url_for('info') }}"><button>Elerhetosegek</button></a>
+    </div>
+    
+    <div style="text-align: center; margin-top: 50px;">
+        <h2>Welcome to our school project</h2>
+        <p>This is Coffee+, which helps you log your coffee buying tendency.</p>
+    </div>
+</body>
+</html>

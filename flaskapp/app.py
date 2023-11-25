@@ -1,14 +1,14 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, jsonify, session
 import os
 import sys
-from flask import jsonify
+
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from src.features import readdata as rd
 from src.features.read import read_id_for_server as serverread
 
-app = Flask(__name__)
-
+app = Flask(__name__, static_folder='Weblap/static')
+app.secret_key = 'key'
 template_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '../Weblap'))
 
 app.template_folder = template_path
@@ -17,7 +17,11 @@ app.template_folder = template_path
 
 @app.route('/')
 def default(): 
-    return render_template('userlog.html')
+    return render_template('index.html')
+
+@app.route('/info')
+def info():
+    return render_template('info.html')
 
 @app.route('/userlog')
 def userlog():
@@ -29,7 +33,16 @@ def admin():
 
 @app.route('/user')
 def user():
-    return render_template('user.html')
+    # Retrieve user information from the session
+    user_data = session.get('user_data')
+
+    if user_data:
+        # Pass user-specific data to the template
+        return render_template('user.html', user_data=user_data)
+    else:
+        # Redirect to the login page if user information is not found in the session
+        return redirect(url_for('userlog'))
+
 
 @app.route('/logscreen')
 def logscreen():
@@ -43,28 +56,33 @@ def registration():
 def adminlog():
     return render_template('adminlog.html')
 
+
 @app.route('/login/user', methods=['POST'])
 def userlogin():
-    
-    cardnumber   =   []
-    password  =   []
+    _, cardnumber, password, money, name = rd.load_users_db()
 
-    _,cardnumber,password,_ = rd.load_users_db()
-
-    user_credentials = {key: value for key, value in zip(cardnumber, password)}
-
+    user_credentials = {key: (p, m, n) for key, p, m, n in zip(cardnumber, password, money, name)}
 
     # Retrieve the username and password from the form
     page_username = request.form.get('username')
     page_password = request.form.get('password')
 
-    # Check the credentials against the database (replace with your actual database logic)
-    if page_username in user_credentials and user_credentials[page_username] == page_password:
+    # Check the credentials against the database
+    if page_username in user_credentials and user_credentials[page_username][0] == page_password:
+        # Store user information in the session
+        session['user_id'] = page_username
+        session['user_data'] = {
+            'name': user_credentials[page_username][2],
+            'money': user_credentials[page_username][1],
+            'cardnumber': page_username
+        }
+
         # Redirect to user.html if the credentials are correct
-        return render_template('user.html')
+        return redirect(url_for('user'))
     else:
         # Redirect to a login error page or handle authentication failure
         return 'Wrong username or password, please try'
+
 
 @app.route('/login/admin', methods=['POST'])
 def adminlogin():
@@ -131,6 +149,20 @@ def addmoney():
     # Handle other HTTP methods or redirect as needed
 
 
+@app.route('/logout', methods=['GET', 'POST'])
+def logout():
+    if request.method == 'POST':
+        # Clear user information from the session
+        session.pop('user_id', None)
+        session.pop('user_data', None)
+        
+        # Redirect to the login page
+        return redirect(url_for('default'))
+    else:
+        # Handle GET request (optional)
+        return 'Invalid request method for logout'
+
+
 
 if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0', port=5000)
+    app.run(debug=True, host='0.0.0.0', port=80)
