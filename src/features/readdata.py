@@ -2,6 +2,15 @@ import sqlite3
 import sys
 import datetime
 
+def get_current_date():
+    # Get the current date
+    current_date = datetime.now()
+
+    # Format the date as yyyy.mm.dd
+    formatted_date = current_date.strftime('%Y.%m.%d')
+
+    return formatted_date
+
 def load_coffee_db():
     conn = sqlite3.connect('/home/pi/Coffe-/data/mydatabase.db')
     cursor = conn.cursor()
@@ -112,6 +121,20 @@ def load_coffeelog_db():
     cursor.close()
     conn.close()
 
+def add_to_coffeelog(buyid, cardid, coffeetype):
+    date = get_current_date()
+    conn = sqlite3.connect('/home/pi/Coffe-/data/mydatabase.db')
+    cursor = conn.cursor()
+
+    # Insert new item into the coffelog table
+    cursor.execute("INSERT INTO coffelog (buyid, date, cardid, coffetype) VALUES (?, ?, ?, ?)",
+                   (buyid, date, cardid, coffeetype))
+
+    # Commit the changes and close the connection
+    conn.commit()
+    cursor.close()
+    conn.close()
+
 def load_moneypaid_db():
     conn = sqlite3.connect('/home/pi/Coffe-/data/mydatabase.db')
     cursor = conn.cursor()
@@ -135,6 +158,20 @@ def load_moneypaid_db():
             elif i==3:
                 money.append(row[i])
 
+    cursor.close()
+    conn.close()
+
+def add_item_to_moneypaid(cardid, rate, money):
+    date = get_current_date()
+    conn = sqlite3.connect('/home/pi/Coffe-/data/mydatabase.db')
+    cursor = conn.cursor()
+
+    # Insert new item into the moneypaid table
+    cursor.execute("INSERT INTO moneypaid (cardid, date, rate, money) VALUES (?, ?, ?, ?)",
+                   (cardid, date, rate, money))
+
+    # Commit the changes and close the connection
+    conn.commit()
     cursor.close()
     conn.close()
 
