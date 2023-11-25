@@ -7,7 +7,7 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from src.features import readdata as rd
 from src.features.read import read_id_for_server as serverread
 
-app = Flask(__name__, static_folder='Weblap/static')
+app = Flask(__name__, static_folder='../Weblap/static')
 app.secret_key = 'key'
 template_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '../Weblap'))
 
