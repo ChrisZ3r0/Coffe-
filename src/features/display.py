@@ -11,6 +11,7 @@ def signals_initial():
     global coffesignal
     coffesignal = False
 
+    
 
 def lcdinitial():
     
@@ -23,7 +24,9 @@ def lcdinitial():
                   auto_linebreaks=True,
                   backlight_enabled=True)
 
-
+def lcdclear():
+    lcd.clear()
+    
 def write_starting_message():
     lcdinitial()
     global startsignal

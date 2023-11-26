@@ -36,6 +36,7 @@ def main():
             
     except KeyboardInterrupt:
         # Handle keyboard interrupt (Ctrl+C)
+        dp.lcdclear()
         print("Stopping the Flask app...")
         flask_app_process.terminate()
         flask_app_process.wait()
