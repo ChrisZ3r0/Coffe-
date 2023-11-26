@@ -72,29 +72,37 @@ def buttonpush(id):
                 previous_button_state2 = button_state2
                 if button_state2 == GPIO.HIGH:
                     print("button2 released")
-                    beep.standardSound()
-                    dp.buttonpushsignal()
+                    if(rd.checkcanbuy(1,id)):
+                        print("button2 checked")
+                        beep.standardSound()
+                        dp.buttonpushsignal()
                     return 2
             if button_state3 != previous_button_state3:
                 previous_button_state3 = button_state3
                 if button_state3 == GPIO.HIGH:
-                    print("button3 released")
-                    beep.standardSound()
-                    dp.buttonpushsignal()
+                    print("button4 released")
+                    if(rd.checkcanbuy(1,id)):
+                        print("button4 checked")
+                        beep.standardSound()
+                        dp.buttonpushsignal()
                     return 3
             if button_state4 != previous_button_state4:
                 previous_button_state4 = button_state4
                 if button_state4 == GPIO.HIGH:
                     print("button4 released")
-                    beep.standardSound()
-                    dp.buttonpushsignal()
+                    if(rd.checkcanbuy(1,id)):
+                        print("button4 checked")
+                        beep.standardSound()
+                        dp.buttonpushsignal()
                     return 4
             if button_state5 != previous_button_state5:
                 previous_button_state5 = button_state5
                 if button_state5 == GPIO.HIGH:
                     print("button5 released")
-                    beep.standardSound()
-                    dp.buttonpushsignal()
+                    if(rd.checkcanbuy(1,id)):
+                        print("button5 checked")
+                        beep.standardSound()
+                        dp.buttonpushsignal()
                     return 5
             if exitbutton_state != previous_exit_button_state:
                 previous_exit_button_state = exitbutton_state
