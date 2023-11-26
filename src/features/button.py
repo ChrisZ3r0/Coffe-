@@ -2,7 +2,7 @@ import RPi.GPIO as GPIO
 import time
 from features import beep
 import features.display as dp
-
+from . import readdata as rd
 def initial():
     GPIO.setmode(GPIO.BOARD)
 
@@ -35,7 +35,7 @@ def initial():
     global previous_button_state5
     global previous_exit_button_state
 
-def buttonpush():
+def buttonpush(id):
     initial()
 
     exit = False
@@ -63,8 +63,10 @@ def buttonpush():
                 previous_button_state1 = button_state1
                 if button_state1 == GPIO.HIGH:
                     print("button1 released")
-                    dp.buttonpushsignal()
-                    beep.standardSound()
+                    if(rd.checkcanbuy(1,id)):
+                        print("button1 checked")
+                        dp.buttonpushsignal()
+                        beep.standardSound()
                     return 1
             if button_state2 != previous_button_state2:
                 previous_button_state2 = button_state2

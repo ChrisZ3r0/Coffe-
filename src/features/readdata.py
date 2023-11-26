@@ -344,7 +344,7 @@ def checkcardid(rfidcardnum):
     conn.close()
 
     for row in data:
-        print (row[0])
+        #print (row[0])
         if rfidcardnum == str(row[0]):
             isonlist=True
             break
@@ -353,42 +353,27 @@ def checkcardid(rfidcardnum):
     return isonlist
 
 def checkcanbuy(buttonnumber, rfidcardnum):
-    isaffordable = False
 
     conn = sqlite3.connect('/home/pi/Coffe-/data/mydatabase.db')
     cursor = conn.cursor()
     
-    cursor.execute("SELECT * FROM users")
-    data = cursor.fetchall()
-
-    cardid  =   []
-    cardnumber   =   []
-    password  =   []
-    money = []
-
-    for row in data:
-        for i in range(len(row)):
-            if i==0:
-                cardid.append(row[i])
-            elif i==1:
-                cardnumber.append(row[i])
-            elif i==2:
-                password.append(row[i])
-            elif i==3:
-                money.append(row[i])
-
+    cursor.execute("SELECT money FROM users WHERE id = ?", (rfidcardnum,))
+    money_result = cursor.fetchone()
+    money=money_result[0]
+    print(money)
     cursor.close()
     conn.close()
 
     price=getcoffeeprice()
-    coffeprice=price[buttonnumber]
-    if  coffeprice> money:
-        isaffordable = True
-        set_user_money(rfidcardnum,coffeprice)
+    print(price[buttonnumber-1])
+    coffeprice=price[buttonnumber-1]
+    if  coffeprice < money:
+        print("setmoney")
+        #set_user_money(rfidcardnum,coffeprice)
+        return True
     else:
-        isaffordable = False
+        return False
 
-    return isaffordable
 
 def set_user_money(rfidcardnum,coffeprice):
     

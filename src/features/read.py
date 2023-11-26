@@ -8,15 +8,15 @@ def rfidread():
 	reader = SimpleMFRC522()
 	try:
 		id, text = reader.read()
-		print(str(id))
+		#print(str(id))
 
-		print("Reading id...")
+		#print("Reading id...")
 
 		if(data.checkcardid(str(id))):
-			print("yey benne van")
-			return True
+			#print("yey benne van")
+			return True,str(id)
 		else:
-			print("yeet nincs benne")
+			#print("yeet nincs benne")
 			return False
 
 	finally:

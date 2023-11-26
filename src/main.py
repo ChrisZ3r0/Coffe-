@@ -19,14 +19,16 @@ def main():
     try:
         while True:
             dp.Start_signal()
-            print("Hello world!")
-            if read.rfidread():
+            #print("Hello world!")
+            result,id=read.rfidread()
+            if result:
+                #print(id)
                 dp.Thanks_signal()
                 beep.goodSound()
                 dp.Coffe_signal()
 
                 print("Reading buttons to know which coffee you get")
-                bt.buttonpush()
+                bt.buttonpush(id)
 
             else:
                 beep.errorSound()
