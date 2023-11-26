@@ -343,8 +343,9 @@ def checkcardid(rfidcardnum):
     cursor.close()
     conn.close()
 
-    while row in data:
-        if rfidcardnum == row:
+    for row in data:
+        print (row[0])
+        if rfidcardnum == str(row[0]):
             isonlist=True
             break
 

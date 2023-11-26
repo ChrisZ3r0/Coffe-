@@ -4,36 +4,40 @@ import features.button as bt
 import features.beep as beep
 import features.display as dp
 import threading
-import time 
-#start_event = threading.Event()
-#stop_event = threading.Event()
+import time
+import subprocess
+
+# Start the Flask app in a subprocess
+flask_app_process = subprocess.Popen(["python", "flaskapp/app.py"])
 
 def main():
-
-    
     display_thread = threading.Thread(target=dp.display)
     display_thread.start()
 
-
     beep.standardSound()
-    while True:
-        
-        dp.Start_signal()
-        print("Hello world!")
-        if(read.rfidread()):
-            dp.Thanks_signal()
-            beep.goodSound()
+    
+    try:
+        while True:
+            dp.Start_signal()
+            print("Hello world!")
+            if read.rfidread():
+                dp.Thanks_signal()
+                beep.goodSound()
+                dp.Coffe_signal()
 
-            dp.Coffe_signal()
+                print("Reading buttons to know which coffee you get")
+                bt.buttonpush()
 
-
-            print("Reading buttons to know wich coffe you get")
-            bt.buttonpush()
-
-        else:
-            beep.errorSound()
-            print("yeet again")
-
+            else:
+                beep.errorSound()
+                print("Try again")
+            
+    except KeyboardInterrupt:
+        # Handle keyboard interrupt (Ctrl+C)
+        print("Stopping the Flask app...")
+        flask_app_process.terminate()
+        flask_app_process.wait()
+        print("Flask app stopped.")
 
 if __name__ == "__main__":
-	main()
+    main()

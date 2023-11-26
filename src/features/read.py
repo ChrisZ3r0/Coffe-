@@ -2,17 +2,17 @@
 
 import RPi.GPIO as GPIO
 from mfrc522 import SimpleMFRC522
-from src.features import readcsv as data
-
+#from features import readcsv as data
+from . import readdata as data
 def rfidread():
 	reader = SimpleMFRC522()
 	try:
 		id, text = reader.read()
-		# print(str(id))
+		print(str(id))
 
 		print("Reading id...")
 
-		if(data.checkdata(str(id))):
+		if(data.checkcardid(str(id))):
 			print("yey benne van")
 			return True
 		else:
