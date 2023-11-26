@@ -199,6 +199,9 @@ def add_item_to_moneypaid(cardid, rate, money):
     cursor.execute("INSERT INTO moneypaid (cardid, date, rate, money) VALUES (?, ?, ?, ?)",
                    (cardid, date, rate, money))
 
+    cursor.execute("UPDATE users SET money = money + ? WHERE cardid = ?", (money, cardid))
+
+
     # Commit the changes and close the connection
     conn.commit()
     cursor.close()
