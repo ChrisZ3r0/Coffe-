@@ -93,3 +93,7 @@ If you get this error when you wanna **pip** install some package:
 Then you just have to ad this to the end of __pip install *package*__ :
 
 `--break-system-packages`
+
+# The Schematic
+
+![The electronical schematic](/Pictures/Coffe+schematik.png)
