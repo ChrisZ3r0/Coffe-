@@ -1,6 +1,6 @@
 import sqlite3
 import sys
-import datetime
+from datetime import datetime
 
 def get_current_date():
     # Get the current date
@@ -199,7 +199,7 @@ def add_item_to_moneypaid(cardid, rate, money):
     cursor.execute("INSERT INTO moneypaid (cardid, date, rate, money) VALUES (?, ?, ?, ?)",
                    (cardid, date, rate, money))
 
-    cursor.execute("UPDATE users SET money = money + ? WHERE cardid = ?", (money, cardid))
+    cursor.execute("UPDATE users SET money = money + ? WHERE id = ?", (money, cardid))
 
 
     # Commit the changes and close the connection
@@ -414,6 +414,7 @@ def set_user_money(rfidcardnum,coffeprice):
         conn.close()
 
     print('set')
+
 
 if __name__ == '__main__':
     globals()[sys.argv[1]]

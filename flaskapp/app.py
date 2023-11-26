@@ -149,12 +149,11 @@ def addmoney():
         rate = request.form.get('rate')
         # Add your logic to update user's money based on rfid_number and money_amount
         # For example, you might have a function like set_user_money(rfid_number, money_amount)
-        rfidnumber = request.form.get('rfidInput')
 
                 
-        if rd.is_card_number_in_use(rfidnumber):
+        if rd.is_card_number_in_use(rfid_number):
             print( f"Added {money_amount} money to user with RFID: {rfid_number} with rate: {rate}")
-            rd.add_item_to_moneypaid(rfidnumber,rate,money)
+            rd.add_item_to_moneypaid(rfid_number,rate,money_amount)
         else:
             return 'User is existing in the database'
     return render_template('admin.html')
