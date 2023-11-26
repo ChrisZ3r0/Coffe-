@@ -20,8 +20,7 @@
             <div>
                 <label>RFID szám: <input type="text" id="rfidForMoney" name="rfidForMoney" required="required" readonly></label>
             </div>
-            <div><button type="submit" class="login-button">Regisztrálás</button></div>
-            <input type="hidden" id="rfidInput" name="rfidInput" required readonly>
+            <div><button type="submit" class="login-button" id="registerButton">Regisztrálás</button></div>
         </fieldset>
     </form>
 
@@ -30,10 +29,13 @@
         <fieldset>
             <legend>Pénz hozzáadása</legend>
             <div>
-                <label>RFID szám: <input type="text" id="rfidForMoneyAdd" name="rfidForMoney" readonly></label>
+                <label>Összeg: <input type="number" name="moneyAmount" required="required"></label>
             </div>
             <div>
-                <label>Összeg: <input type="number" name="moneyAmount" required="required"></label>
+                <label>Rate: <input type="number" name="rate" required="required"></label>
+            </div>
+            <div>
+                <label>RFID szám: <input type="text" id="rfidForMoneyAdd" name="rfidForMoney" readonly></label>
             </div>
             <div>
                 <button type="button" class="login-button" id="addMoneyButton">Pénz hozzáadása</button>
@@ -52,6 +54,9 @@
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script>
         $(document).ready(function() {
+            // Disable the register and add money buttons initially
+            $("#registerButton, #addMoneyButton").prop("disabled", true);
+    
             $("#readRFID").click(function() {
                 // Show the popup
                 $("#rfidPopup").show();
@@ -60,20 +65,17 @@
                 $.ajax({
                     url: "{{ url_for('read_rfid') }}",
                     type: "POST",
-                    dataType: "json",  // Specify JSON dataType
+                    dataType: "json",
                     success: function(response) {
-                        // Set the RFID number to the hidden input field
-                        $("#rfidInput").val(response.rfid);
-    
-                        // Display the RFID number in the designated div
-                        $("#rfidDisplay").text("RFID Number: " + response.rfid);
-    
-                        // Set the RFID number to the readonly field in the second form
+                        // Set the RFID number to the readonly field in the first form
                         $("#rfidForMoney").val(response.rfid);
-                        
+    
                         // Set the RFID number to the readonly field in the second form
                         $("#rfidForMoneyAdd").val(response.rfid);
-
+    
+                        // Enable the register and add money buttons
+                        $("#registerButton, #addMoneyButton").prop("disabled", false);
+    
                         // Close the popup after successful reading
                         $("#rfidPopup").hide();
                     },
@@ -87,13 +89,18 @@
             });
     
             $("#addMoneyButton").click(function() {
-                // Submit the second form when the "Pénz hozzáadása" button is clicked
-                $("#addMoneyForm").submit();
+                // Check if the RFID field is not empty before submitting the form
+                if ($("#rfidForMoneyAdd").val() === "") {
+                    alert("Please read RFID before adding money.");
+                } else {
+                    // Submit the second form when the "Pénz hozzáadása" button is clicked
+                    $("#addMoneyForm").submit();
+                }
             });
     
             $("#registerButton").click(function() {
                 // Check if the hidden field is not empty
-                if ($("#rfidInput").val() === "") {
+                if ($("#rfidForMoney").val() === "") {
                     // Show an error message or take appropriate action
                     alert("Please read RFID before registering.");
                 } else {
@@ -103,5 +110,6 @@
             });
         });
     </script>
+    
 </body>
 </html>
