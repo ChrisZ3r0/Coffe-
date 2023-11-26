@@ -115,7 +115,7 @@ def adminadduser():
         money = request.form.get('money')
 
         # Extract RFID value from the form submission
-        rfidnumber = request.form.get('rfidInput')
+        rfidnumber = request.form.get('rfidForMoney')
 
         # Check if the card number is already in use
         if rd.is_card_number_in_use(rfidnumber):
