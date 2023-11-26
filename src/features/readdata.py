@@ -150,14 +150,14 @@ def load_coffeelog_db():
     cursor.close()
     conn.close()
 
-def add_to_coffeelog(buyid, cardid, coffeetype):
+def add_to_coffeelog(cardid, coffeetype):
     date = get_current_date()
     conn = sqlite3.connect('/home/pi/Coffe-/data/mydatabase.db')
     cursor = conn.cursor()
 
     # Insert new item into the coffelog table
-    cursor.execute("INSERT INTO coffelog (buyid, date, cardid, coffetype) VALUES (?, ?, ?, ?)",
-                   (buyid, date, cardid, coffeetype))
+    cursor.execute("INSERT INTO coffeelog (date, cardid, type) VALUES (?, ?, ?)",
+                   (date, cardid, coffeetype))
 
     # Commit the changes and close the connection
     conn.commit()
@@ -318,6 +318,40 @@ def getcoffeeprice():
     
     return price
 
+def getcoffeetypebyname():
+
+    conn = sqlite3.connect('/home/pi/Coffe-/data/mydatabase.db')
+    cursor = conn.cursor()
+    
+    cursor.execute("SELECT * FROM coffee WHERE button_num > 0 ORDER BY button_num ASC")
+    data = cursor.fetchall()
+
+    coffeeid  =   []
+    coffee_nam  =   []
+    price   =   []
+    available   =   []
+    button_num  =   []
+
+    
+
+    for row in data:
+        for i in range(len(row)):
+            if i==0:
+                coffeeid.append(row[i])
+            elif i==1:
+                coffee_nam.append(row[i])
+            elif i==2:
+                price.append(row[i])
+            elif i==3:
+                available.append(row[i])
+            elif i==4:
+                button_num.append(row[i])
+
+    cursor.close()
+    conn.close()
+    
+    return coffeeid
+
 def checkcardid(rfidcardnum):
     isonlist = False
 
@@ -363,13 +397,15 @@ def checkcanbuy(buttonnumber, rfidcardnum):
     print(money)
     cursor.close()
     conn.close()
-
     price=getcoffeeprice()
+    coffename=getcoffeetypebyname()
     print(price[buttonnumber-1])
     coffeprice=price[buttonnumber-1]
-    if  coffeprice < money:
-        print("setmoney")
-        #set_user_money(rfidcardnum,coffeprice)
+    if  coffeprice <= money:
+        #print("setmoney")
+        set_user_money(rfidcardnum,coffeprice)
+        # print(coffename[buttonnumber-1])
+        add_to_coffeelog(rfidcardnum,coffename[buttonnumber-1])
         return True
     else:
         return False
@@ -380,16 +416,16 @@ def set_user_money(rfidcardnum,coffeprice):
     conn = sqlite3.connect('/home/pi/Coffe-/data/mydatabase.db')
     cursor = conn.cursor()
     
-    query = "SELECT * FROM users WHERE cardnum = ?"
+    query = "SELECT * FROM users WHERE id = ?"
     cursor.execute(query, (rfidcardnum,))    
     data = cursor.fetchone()
 
     if data:
 
-        user_money = data[2]
+        user_money = data[3]
         user_money -= coffeprice
 
-        query = "UPDATE users SET money = ? WHERE cardnum = ?"
+        query = "UPDATE users SET money = ? WHERE id = ?"
         cursor.execute(query, (user_money, rfidcardnum))
 
 

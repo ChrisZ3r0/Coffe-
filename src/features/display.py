@@ -47,7 +47,7 @@ def write_coffee_and_price():
     coffeid,kave,price,available,button_num = data.getbuttons()
     # kave,available,price = text.load_coffe()
 
-    print(coffesignal)
+    # print(coffesignal)
 
     for i, j, k in zip(button_num,kave,price):
         if not coffesignal:
@@ -66,17 +66,17 @@ def display():
     while True:
         
         if startsignal:
-            print("start")
+            # print("start")
             write_starting_message()
             time.sleep(0.5)
 
         elif thankssignal:
-            print("thanks")
+            # print("thanks")
             write_thanks_message()
             time.sleep(1.5)
 
         elif coffesignal:
-            print("coffee")
+            # print("coffee")
             write_coffee_and_price()
         
 
@@ -85,20 +85,20 @@ def display():
 
 def Start_signal():
     global startsignal
-    print("startsignal")
+    # print("startsignal")
     startsignal = True
 
 def Thanks_signal():
     global thankssignal
-    print("thankssignal")
+    # print("thankssignal")
     thankssignal = True
 
 def Coffe_signal():
     global coffesignal
-    print("coffesignal")
+    # print("coffesignal")
     coffesignal = True
 
 def buttonpushsignal():
     global coffesignal
-    print("buttonpushsignal")
+    # print("buttonpushsignal")
     coffesignal = False

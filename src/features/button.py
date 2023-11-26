@@ -14,11 +14,11 @@ def initial():
     global exitbutton
 
     Button1 = 35
-    Button2 = 37
-    Button3 = 36
+    Button2 = 36
+    Button3 = 37
     Button4 = 38
-    Button5 = 40
-    exitbutton = 33
+    Button5 = 33
+    exitbutton = 40
 
 
     GPIO.setup(Button1,GPIO.IN,pull_up_down=GPIO.PUD_UP)
@@ -62,47 +62,62 @@ def buttonpush(id):
             if button_state1 != previous_button_state1:
                 previous_button_state1 = button_state1
                 if button_state1 == GPIO.HIGH:
-                    print("button1 released")
+                    #print("button1 released")
                     if(rd.checkcanbuy(1,id)):
                         print("button1 checked")
                         dp.buttonpushsignal()
                         beep.standardSound()
+                    else:
+                        dp.buttonpushsignal()
+                        beep.errorSound()
                     return 1
             if button_state2 != previous_button_state2:
                 previous_button_state2 = button_state2
                 if button_state2 == GPIO.HIGH:
-                    print("button2 released")
-                    if(rd.checkcanbuy(1,id)):
+                    # print("button2 released")
+                    if(rd.checkcanbuy(2,id)):
                         print("button2 checked")
                         beep.standardSound()
                         dp.buttonpushsignal()
+                    else:
+                        dp.buttonpushsignal()
+                        beep.errorSound()
                     return 2
             if button_state3 != previous_button_state3:
                 previous_button_state3 = button_state3
                 if button_state3 == GPIO.HIGH:
-                    print("button4 released")
-                    if(rd.checkcanbuy(1,id)):
-                        print("button4 checked")
+                    # print("button3 released")
+                    if(rd.checkcanbuy(3,id)):
+                        print("button3 checked")
                         beep.standardSound()
                         dp.buttonpushsignal()
+                    else:
+                        dp.buttonpushsignal()
+                        beep.errorSound()
                     return 3
             if button_state4 != previous_button_state4:
                 previous_button_state4 = button_state4
                 if button_state4 == GPIO.HIGH:
-                    print("button4 released")
-                    if(rd.checkcanbuy(1,id)):
+                    # print("button4 released")
+                    if(rd.checkcanbuy(4,id)):
                         print("button4 checked")
                         beep.standardSound()
                         dp.buttonpushsignal()
+                    else:
+                        dp.buttonpushsignal()
+                        beep.errorSound()
                     return 4
             if button_state5 != previous_button_state5:
                 previous_button_state5 = button_state5
                 if button_state5 == GPIO.HIGH:
-                    print("button5 released")
-                    if(rd.checkcanbuy(1,id)):
+                    # print("button5 released")
+                    if(rd.checkcanbuy(5,id)):
                         print("button5 checked")
                         beep.standardSound()
                         dp.buttonpushsignal()
+                    else:
+                        dp.buttonpushsignal()
+                        beep.errorSound()
                     return 5
             if exitbutton_state != previous_exit_button_state:
                 previous_exit_button_state = exitbutton_state
