@@ -8,7 +8,7 @@ import time
 import subprocess
 
 # Start the Flask app in a subprocess
-flask_app_process = subprocess.Popen(["python", "flaskapp/app.py"])
+flask_app_process = subprocess.Popen(["python", "Coffe-/flaskapp/app.py"])
 
 def main():
     display_thread = threading.Thread(target=dp.display)
