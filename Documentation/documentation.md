@@ -58,6 +58,10 @@ A hardwert egy raspberry pi élteti, amelynek működési leírása alább láth
 
 A scriptek lényeges leírása:
 
+### main.py
+
+    A program és weblap futásához szükséges indításokat végzi el, illetve elkezdi az RFID adatok olvasását is.
+
 ### beep.py
     
     A csipógóért felelős script. Olyan funkciókat tartalmaz amelyek bizonyos frekvencián megszólaltatják a csipogót, például success és denied hangok.
@@ -77,4 +81,9 @@ A scriptek lényeges leírása:
 
 ### readdata.py
 
-    Az összes adatbázisból való olvasásért és adatbázisba való írásért felelős script.
+    Az összes adatbázisból való olvasásért és adatbázisba való írásért felelős script. Teljesen hozzáfér az adatbázis tábláihoz, amelyet a python script az sqlite3 modul importálásával képes módosítani. A módosítások egy oldalfrissítéssel láthatóak is az admin és a felhasználói oldalon is.
+    A script képes új felhasználó hozzáadására, a pénz hozzáadására adott felhasználóhoz, a barchart létrehozásához szükséges adatokat lekérésére, a jelszavakat elérésére és ellenőrzésére, ellenőrizni a felhasználó szerepelését az adatbázisban, a gombok mögötti kávék olvasására, a megfelelő mennyiségű pénz ellenőrzésére,
+
+### app.py
+
+    A backendje a weblapoknak. Különböző routok vannak meghatározva a felhasználói bejelentkezés ellenőrzésére, az oszlopdiagram adatok kérésére és kiírására, a felhasználók és felhasználói pénzek hozzáadására is.
