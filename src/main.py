@@ -32,6 +32,7 @@ def main():
 
             else:
                 beep.errorSound()
+                dp.carderror()
                 print("Try again")
             
     except KeyboardInterrupt:

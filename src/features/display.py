@@ -26,7 +26,14 @@ def lcdinitial():
 
 def lcdclear():
     lcd.clear()
-    
+
+def carderror():
+    lcd.clear()
+    lcd.write_string("Kartya error")
+    time.sleep(1)
+    lcd.clear()
+
+
 def write_starting_message():
     lcdinitial()
     global startsignal

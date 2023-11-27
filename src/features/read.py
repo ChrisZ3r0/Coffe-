@@ -17,7 +17,7 @@ def rfidread():
 			return True,str(id)
 		else:
 			#print("yeet nincs benne")
-			return False
+			return False,str(0)
 
 	finally:
         	GPIO.cleanup()
