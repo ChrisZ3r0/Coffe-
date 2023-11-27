@@ -175,7 +175,14 @@ def logout():
         # Handle GET request (optional)
         return 'Invalid request method for logout'
 
-
+@app.route('/get_chart_data')
+def get_chart_data():
+    # Replace this with your actual data retrieval logic
+    chart_data = {
+        'labels': ['Label 1', 'Label 2', 'Label 3'],
+        'values': [10, 20, 30]
+    }
+    return jsonify(chart_data)
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=5000)
