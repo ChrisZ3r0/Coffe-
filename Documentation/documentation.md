@@ -87,3 +87,11 @@ A scriptek lényeges leírása:
 ### app.py
 
     A backendje a weblapoknak. Különböző routok vannak meghatározva a felhasználói bejelentkezés ellenőrzésére, az oszlopdiagram adatok kérésére és kiírására, a felhasználók és felhasználói pénzek hozzáadására is.
+
+# Továbbfejlesztési lehetőségek
+
+A projektet tovább lehetne több oldalról is fejleszteni.
+
+Egyrészt mindenképpen lehetne a weboldalakat designolni, de ez csak szépségi szempontból lehetne hasznosabb.
+
+A weboldalakon, ahol grafikont rajzolunk ki, ott mindenképpen lehetne több fajta leosztásban is látni az adatokat, például azt hogy ne csak az utolsó 7 nap adatait lássuk.
