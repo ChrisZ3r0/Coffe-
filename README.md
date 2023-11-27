@@ -97,3 +97,12 @@ Then you just have to ad this to the end of __pip install *package*__ :
 # The Schematic
 
 ![The electronical schematic](/Pictures/Coffe+schematik.png)
+
+# Documnetation
+
+[Documentation](/Documentation/documentation.md)
+[Websitedocumentation](/Documentation/Website.md)
+
+# Project example
+
+[ExampleFotos](/Documentation/projektexample.md)
