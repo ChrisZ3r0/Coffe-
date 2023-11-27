@@ -137,14 +137,14 @@ def adminadduser():
 
 @app.route('/read_rfid', methods=['POST'])
 def read_rfid():
-    print('check')
-    check()
-    time.sleep(1000)
-    # Add your RFID reading logic here
-    # You can call your Python function or interact with your RFID reader
-    new_user_id = serverread()
+    # Retrieve RFID data from the POST request
+    rfid_data = request.form.get('rfid_data')
+
+    # Process the RFID data as needed
+    print(f"Received RFID data: {rfid_data}")
+
     # Return a response to the client
-    return jsonify({"rfid": new_user_id}) 
+    return jsonify({"rfid": rfid_data})
 
 @app.route('/addmoney', methods=['POST'])
 def addmoney():

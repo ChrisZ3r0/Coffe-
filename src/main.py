@@ -6,9 +6,22 @@ import features.display as dp
 import threading
 import time
 import subprocess
+import requests
 
 # Start the Flask app in a subprocess
 flask_app_process = subprocess.Popen(["python", "flaskapp/app.py"])
+
+
+def send_rfid_to_flask(rfid_data):
+    # Define the Flask app URL
+    flask_app_url = "http://localhost:5000/read_rfid"
+
+    # Send a POST request with RFID data
+    response = requests.post(flask_app_url, data={"rfid_data": rfid_data})
+
+    # Print the response (for debugging purposes)
+    print("Flask app response:", response.text)
+
 
 def main():
     display_thread = threading.Thread(target=dp.display)
@@ -38,6 +51,7 @@ def main():
                 beep.errorSound()
                 dp.carderror()
                 print("Try again")
+                send_rfid_to_flask(id)
             
     except KeyboardInterrupt:
         # Handle keyboard interrupt (Ctrl+C)
