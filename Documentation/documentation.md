@@ -88,6 +88,30 @@ A scriptek lényeges leírása:
 
     A backendje a weblapoknak. Különböző routok vannak meghatározva a felhasználói bejelentkezés ellenőrzésére, az oszlopdiagram adatok kérésére és kiírására, a felhasználók és felhasználói pénzek hozzáadására is.
 
+# Adatbázis
+
+Az adatbázisban 5 táblában tároljuk az adatokat. Az alábbi táblák megmutatják milyen adatokat tárolunk.
+
+#### admin
+
+    Az admintáblában tároljuk az adminok rfid kártya kódját, a kártyaszámot és a jelszót. Az admin oldal a kártyaszámot és a jelszót használja fel mint bejelentkezési felhasználónév és jelszó.
+
+#### coffee
+
+    A coffee tábla tartalmazza a gépen beállítható kávék nevét, árát, elérhetőségét és azt, hogy az eszközön melyik gombon található meg. Ha nincsen gombra osztva, akkor ez az érték 0.
+
+#### coffeelog
+
+    A kávévásárlásokat loggolja dátum, rfid kártyakód és kávétípus alapján.
+
+#### moneypaid
+
+    A moneypaid tartalmazza hogy ki, mikor, mennyi pénzt fizetett be, illetve hogy ezt milyen rate-ben tette meg. A rate azt határozza meg hogy akkor egy kávé ára mennyi, és a számolásba bele tudjuk tenni, hogy ha növelnénk a kávé árát. Ez akkor a leghasznosabb, ha csak egyfajta kávét vehetünk, vagy ha többfajta van, akkor ez a mennyiség az anyagmennyiség átlagára lenne.
+
+#### users
+
+    Itt tároljuk a user rfid kártyakódját, kártyaszámát, jelszavát, pénzét és teljes nevét. A kártyaszámot és jelszót használja fel a rendszer a user bejelentkezésnél mint felhasználónév és jelszó.
+
 # Továbbfejlesztési lehetőségek
 
 A projektet tovább lehetne több oldalról is fejleszteni, hiszen jelenleg nagyon sok dolgot csak az az admin/rendszergazda tud változtatni, aki hozzáfér az adatbázishoz is.
@@ -110,3 +134,5 @@ A raspberry pi-on megoldani hogy egyrészt automatikusan induljon el a jelenlegi
 Lehetne az eszközhöz egy stabilabb áramforrást kapcsolni, illetve hűtőlapkát a processzorra és a memóriára is, mert úgy vélem emiatt képes hosszabb futás után túlmelegedni, és ettől fogva nem reagálni, semmilyen funkcióra.
 
 A végtermékként meg az eszközt lehetne egy kávéfőzőn belülre rakni, amit egy relén keresztül ki-be tudna kapcsolgatni, hogy főzze a kávét.
+
+Beiktatni egy olyan számolást, hogy a pénzlevonásnál figyelembe vegye a táblázatokból, hogy a pénzt milyen rate-el vettük.
