@@ -72,3 +72,22 @@ input[type="password"] {
 .login-button:hover {
     background-color: #77644e;
 }
+.button-link {
+    display: inline-flex;
+    padding: 10px 20px;
+    margin: 5px; 
+    text-align: center;
+    text-decoration: none;
+    background-color: #998064;
+    color:black; 
+    border-radius: 5px; 
+    font-size: 16px;
+    cursor: pointer;
+    vertical-align: top;
+  }
+
+  
+  .button-link:hover {
+    background-color: #77644e;
+  }
+
