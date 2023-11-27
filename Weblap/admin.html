@@ -4,21 +4,24 @@
     <meta charset="utf-8">
     <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='admin.css')}}">  
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-         
+    <!-- <link rel="stylesheet" type="text/css" href="static/admin.css">-->
+    
 </head>
 <body>
+    
     <a class="logout" href="{{url_for('adminlog')}}" title="Alogin">Log out </a>
-
-    <h1>Admin felület</h1>
-
+    <div style="vertical-align: top; display:flex;">
+    <img src="{{ url_for('static', filename='coffeeindex.png') }}" alt="Coffee+" style="width: 180px; height: 125px;">
+    <h1 style="margin-left: 50px; margin-top: 50px;">Admin felület</h1>
+    </div>
     <div class="container">
     <form id="adminAddUserForm" action="{{ url_for('adminadduser') }}" method="post">
         <fieldset>
             <legend>Új felhasználó regisztrálása</legend>
-            <div><label>Név: <input name="nev" type="text" pattern="[A-Za-zÁÉÍÓÖŐÚÜŰáéíóöőúüű\s]+" title="Please enter a valid name (letters and spaces only)" placeholder="John Doe" required="required" /></label></div>
-            <div><label>Kártyaszám: <input name="card" type="text" pattern="[A-Z]{1}[0-9]{8}" title="Please enter a valid Cardnumber (1 letter and numbers only example: H12345678)" placeholder="H12345678" required="required" /></label></div>
-            <div><label>Születési dátum: <input name="date" type="text" pattern="\d{4}\.\d{2}\.\d{2}" title="Please enter a valid date (yyyy.mm.dd)" placeholder="2002.07.23" required="required" /></label></div>
-            <div><label>Kezdeti összeg: <input name="money" type="text" pattern="^[0-9]+$" title="Please enter the initial payment" placeholder="5000" required="required" /></label></div>
+            <div><label>Név:<br> <input name="nev" type="text" pattern="[A-Za-zÁÉÍÓÖŐÚÜŰáéíóöőúüű\s]+" title="Please enter a valid name (letters and spaces only)" placeholder="John Doe" required="required" /></label></div>
+            <div><label>Kártyaszám: <br><input name="card" type="text" pattern="[A-Z]{1}[0-9]{8}" title="Please enter a valid Cardnumber (1 letter and numbers only example: H12345678)" placeholder="H12345678" required="required" /></label></div>
+            <div><label>Születési dátum: <br><input name="date" type="text" pattern="\d{4}\.\d{2}\.\d{2}" title="Please enter a valid date (yyyy.mm.dd)" placeholder="2002.07.23" required="required" /></label></div>
+            <div><label>Kezdeti összeg:<br> <input name="money" type="text" pattern="^[0-9]+$" title="Please enter the initial payment" placeholder="5000" required="required" /></label></div>
             <div>
                 <label>RFID szám: <input type="text" id="rfidForMoney" name="rfidForMoney" required="required" readonly></label>
             </div>
@@ -45,7 +48,7 @@
         </fieldset>
     </form>
     </div>
-    <button type="button" class="login-button" id="readRFID">Read RFID</button>
+    <button type="button" class="login-button"style="margin-left:30px; marin-top:0px;" id="readRFID">Read RFID</button>
 
     <div>
         <legend>Kávévásárlások az elmúlt héten</legend>
