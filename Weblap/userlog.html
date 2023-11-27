@@ -4,15 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='userlog.css')}}">
+    <!-- <link rel="stylesheet" type="text/css" href="static/userlog.css"> -->
     <title>Login</title>
 </head>
 <body class="userlog-page">
     <div class="top-navigation">
-        <img src="{{ url_for('static', filename='coffeeindex.png') }}" alt="Coffee+" style="width: 200px; height: 125px;">
-        <a href="{{ url_for('default') }}"><button>Home</button></a>
-        <a href="{{ url_for('userlog') }}"><button>User Login</button></a>
-        <a href="{{ url_for('adminlog') }}"><button>Admin Login</button></a>
-        <a href="{{ url_for('info') }}"><button>Elerhetosegek</button></a>
+        <img src="{{ url_for('static', filename='coffeeindex.png') }}" alt="Coffee+" style="width: 180px; height: 125px;">
+        <a class="button-link" href="{{ url_for('default') }}" >Home</a>
+        <a class="button-link" href="{{ url_for('adminlog') }}">Admin Login</a>
+        <a class="button-link" href="{{ url_for('info') }}">Contacts</a>
     </div>
     <div class="login-container">
         <h2>Login</h2>
@@ -28,7 +28,7 @@
             <div class="form-group2">
                 <!--<input class="checkbox" type="checkbox" value="remember-me" id="flexCheckDefault">
                 <label class="checkbox" for="flexCheckDefault">Admin bejelentkezés</label>-->
-                <a href="{{url_for('adminlog')}}" title="Alogin">Admin login </a>
+                <!-- <a href="{{url_for('adminlog')}}" title="Alogin">Admin login </a> -->
               </div>
             <button type="submit" class="login-button">Login</button>
         </form>
