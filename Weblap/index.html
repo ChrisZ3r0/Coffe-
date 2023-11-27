@@ -3,17 +3,19 @@
 <head>
     <title>Coffee+</title>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='index.css') }}">
+    <!-- <link rel="stylesheet" type="text/css" href="static/index.css"> -->
+
 </head>
 <body>
-    <div style="text-align: left; margin-top: 20px; margin-left: 20px;">
-        <img src="{{ url_for('static', filename='coffeeindex.png') }}" alt="Coffee+" style="width: 200px; height: 125px;">
-        <a href="{{ url_for('default') }}"><button>Home</button></a>
-        <a href="{{ url_for('userlog') }}"><button>User Login</button></a>
-        <a href="{{ url_for('adminlog') }}"><button>Admin Login</button></a>
-        <a href="{{ url_for('info') }}"><button>Elerhetosegek</button></a>
+    <div >
+        <img src="{{ url_for('static', filename='coffeeindex.png') }}" alt="Coffee+" style="width: 180px; height: 125px;">
+        <a class="button-link" href="{{ url_for('default') }}" >Home</a>
+        <a class="button-link" href="{{ url_for('userlog') }}">User Login</a>
+        <a class="button-link" href="{{ url_for('adminlog') }}">Admin Login</a>
+        <a class="button-link" href="{{ url_for('info') }}">Contacts</a>
     </div>
     
-    <div style="text-align: center; margin-top: 50px;">
+    <div>
         <h2>Welcome to our school project</h2>
         <p>This is Coffee+, which helps you log your coffee buying tendency.</p>
     </div>
