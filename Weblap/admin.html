@@ -136,8 +136,6 @@
             $("#registerButton, #addMoneyButton").prop("disabled", true);
     
             $("#readRFID").click(function() {
-                // Show the popup
-                $("#rfidPopup").show();
     
                 // Make an AJAX request to the server
                 $.ajax({
@@ -145,6 +143,10 @@
                     type: "POST",
                     dataType: "json",
                     success: function(response) {
+                        // Show the popup
+                        $("#rfidPopup").show();
+                        
+                        // alert("RFID code: " + response.rfid);
                         // Set the RFID number to the readonly field in the first form
                         $("#rfidForMoney").val(response.rfid);
     

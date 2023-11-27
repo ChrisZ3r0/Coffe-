@@ -1,6 +1,5 @@
 from RPLCD.i2c import CharLCD
 import time
-from features import readcsv as text
 from features import readdata as data
 def signals_initial():
 

@@ -2,12 +2,10 @@ from flask import Flask, render_template, request, redirect, url_for, jsonify, s
 import os
 import sys
 import time
-
+import json
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 from src.features import readdata as rd
-from src.features.read import read_id_for_server as rfidread
-from src.features.read import set_check as check
 
 app = Flask(__name__, static_folder='../Weblap/static')
 app.secret_key = 'key'
@@ -137,14 +135,13 @@ def adminadduser():
 
 @app.route('/read_rfid', methods=['POST'])
 def read_rfid():
-    # Retrieve RFID data from the POST request
-    rfid_data = request.form.get('rfid_data')
-
-    # Process the RFID data as needed
-    print(f"Received RFID data: {rfid_data}")
-
-    # Return a response to the client
-    return jsonify({"rfid": rfid_data})
+    try:
+        with open('/home/pi/Coffe-/data/shared_data.json', 'r') as file:
+            data = json.load(file)
+            rfid_data = data.get('rfid_data', '')
+            return jsonify({"rfid": rfid_data})
+    except Exception as e:
+        return jsonify({"error": str(e)})
 
 @app.route('/addmoney', methods=['POST'])
 def addmoney():
