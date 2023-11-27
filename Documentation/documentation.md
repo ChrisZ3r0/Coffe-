@@ -103,6 +103,10 @@ Emellett lehetne neki egy 3D nyomtatott házat is készíteni, amivel még stabi
 E kettő kombinálásával pedig még kisebbé is át lehetne alakítani a hardvert.
 
 Az adminfelületbe lehetne egy kávé állítás funkciót beiktatni, ahol meg lehetne változtatni hogy melyik gomb mögött melyik kávé van.
+Egy olyan funkciót is hozzá lehetne az adminokhoz adni, hogy tudjanak kitörölni felhasználókat az adatbázisból.
 
 A raspberry pi-on megoldani hogy egyrészt automatikusan induljon el a jelenlegi kávérögzítő program, illetve még mindenképpen előnyös lenne ha a raspberrypi-tól lehetne localhostolni az adatbázist, amelyet elérhetnénk valamilyen helyi hálózati, akár netes grafikus felületről.
 
+Lehetne az eszközhöz egy stabilabb áramforrást kapcsolni, illetve hűtőlapkát a processzorra és a memóriára is, mert úgy vélem emiatt képes hosszabb futás után túlmelegedni, és ettől fogva nem reagálni, semmilyen funkcióra.
+
+A végtermékként meg az eszközt lehetne egy kávéfőzőn belülre rakni, amit egy relén keresztül ki-be tudna kapcsolgatni, hogy főzze a kávét.
