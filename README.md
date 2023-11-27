@@ -101,6 +101,7 @@ Then you just have to ad this to the end of __pip install *package*__ :
 # Documnetation
 
 [Documentation](/Documentation/documentation.md)
+<br>
 [Websitedocumentation](/Documentation/Website.md)
 
 # Project example
