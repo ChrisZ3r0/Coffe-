@@ -8,7 +8,7 @@ import time
 import subprocess
 
 # Start the Flask app in a subprocess
-flask_app_process = subprocess.Popen(["python", "Coffe-/flaskapp/app.py"])
+flask_app_process = subprocess.Popen(["python", "flaskapp/app.py"])
 
 def main():
     display_thread = threading.Thread(target=dp.display)
@@ -19,8 +19,12 @@ def main():
     try:
         while True:
             dp.Start_signal()
-            #print("Hello world!")
+
+
+            print("Hello world!")
+
             result,id=read.rfidread()
+            
             if result:
                 #print(id)
                 dp.Thanks_signal()

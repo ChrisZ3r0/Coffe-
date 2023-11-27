@@ -1,12 +1,13 @@
 from flask import Flask, render_template, request, redirect, url_for, jsonify, session
 import os
 import sys
-
+import time
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 from src.features import readdata as rd
-from src.features.read import read_id_for_server as serverread
+from src.features.read import read_id_for_server as rfidread
+from src.features.read import set_check as check
 
 app = Flask(__name__, static_folder='../Weblap/static')
 app.secret_key = 'key'
@@ -136,6 +137,9 @@ def adminadduser():
 
 @app.route('/read_rfid', methods=['POST'])
 def read_rfid():
+    print('check')
+    check()
+    time.sleep(1000)
     # Add your RFID reading logic here
     # You can call your Python function or interact with your RFID reader
     new_user_id = serverread()
