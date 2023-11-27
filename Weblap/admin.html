@@ -2,7 +2,9 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='admin.css')}}">           
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='admin.css')}}">  
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+         
 </head>
 <body>
     <a class="logout" href="{{url_for('adminlog')}}" title="Alogin">Log out </a>
@@ -45,11 +47,84 @@
     </div>
     <button type="button" class="login-button" id="readRFID">Read RFID</button>
 
+    <div>
+        <legend>Kávévásárlások az elmúlt héten</legend>
+        <canvas id="myChart" width="400" height="250"></canvas>
+    </div>
+    
+
 
     <!-- Popup for RFID reading -->
     <div id="rfidPopup" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: white; padding: 20px; border: 1px solid #ccc;">
         Please use RFID card...
     </div>
+
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // Fetch data from Flask backend (replace this with your actual endpoint)
+            fetch("/get_chart_data_admin")  // Removed the hardcoded card number
+                .then(response => response.json())
+                .then(data => {
+                    // Process the data and render the chart
+                    renderChart(data);
+                })
+                .catch(error => console.error('Error fetching chart data:', error));
+
+                function createDiagonalPattern(color = 'black') {
+                    // create a 10x10 px canvas for the pattern's base shape
+                    let shape = document.createElement('canvas')
+                    shape.width = 10
+                    shape.height = 10
+                    // get the context for drawing
+                    let c = shape.getContext('2d')
+                    // draw 1st line of the shape 
+                    c.strokeStyle = color
+                    c.beginPath()
+                    c.moveTo(2, 0)
+                    c.lineTo(10, 8)
+                    c.stroke()
+                    // draw 2nd line of the shape 
+                    c.beginPath()
+                    c.moveTo(0, 8)
+                    c.lineTo(2, 10)
+                    c.stroke()
+                    // create the pattern from the shape
+                    return c.createPattern(shape, 'repeat')
+                }
+                function renderChart(data) {
+                    var ctx = document.getElementById('myChart').getContext('2d');
+
+                    var myChart = new Chart(ctx, {
+                        type: 'bar',
+                        data: {
+                            labels: data.labels,
+                            datasets: [{
+                                label: 'Kávé vásárlásaim',
+                                data: data.values,
+                                backgroundColor: createDiagonalPattern('rgba(75, 192, 192, 1)'),
+                                borderColor: 'rgba(75, 192, 192, 1)',
+                                borderWidth: 1,
+                                
+                            }]
+                        },
+                        options: {
+                            scales: {
+                                y: {
+                                    beginAtZero: true
+                                }
+                            }
+                        },
+                    });
+                
+                    // Add a background image to the canvas using CSS
+                    var backgroundImage = 'linear-gradient(to right, rgba(255,255,255,0) 49.5%, rgba(75, 192, 192, 0.2) 49.5%, rgba(75, 192, 192, 0.2) 50.5%, rgba(255,255,255,0) 50.5%)';
+                    ctx.canvas.style.backgroundImage = backgroundImage;
+                }
+
+
+        });
+    </script>
 
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script>

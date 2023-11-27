@@ -247,16 +247,63 @@ def lastsevendays():
 
     # Calculate the date 7 days ago from the current date
 
-    seven_days_ago = datetime.datetime.now() - datetime.timedelta(days=7)
+    seven_days_ago = datetime.strptime(get_current_date(), '%Y.%m.%d') - timedelta(days=7)
     formatted_date = seven_days_ago.strftime('%Y.%m.%d')   
     # Execute the SQL query
 
-    cursor.execute("SELECT * FROM coffeelog WHERE date >= ?", (formatted_date,))
-    data = cursor.fetchall()
-    for row in data:
-        print(row)
+    cursor.execute("SELECT date, COUNT(*) FROM coffeelog WHERE date >= ?  GROUP BY date", (formatted_date,))
+    print('printing')
+    chart_data = cursor.fetchall()
+    print(chart_data)
+    cursor.close()
+    conn.close()
+    return chart_data
 
 def lastsevendays_withfilter(cardnumber):
+
+    conn = sqlite3.connect('/home/pi/Coffe-/data/mydatabase.db')
+    cursor = conn.cursor()
+
+    cursor.execute("SELECT * FROM users WHERE cardnumber = ? ", (cardnumber,))
+    data = cursor.fetchone()
+    userid=data[0]
+ 
+    # Calculate the date 7 days ago from the current date
+
+    seven_days_ago = datetime.strptime(get_current_date(), '%Y.%m.%d') - timedelta(days=7)
+    formatted_date = seven_days_ago.strftime('%Y.%m.%d')   
+    # Execute the SQL query
+
+    cursor.execute("SELECT date, COUNT(*) FROM coffeelog WHERE date >= ? AND cardid = ? GROUP BY date", (formatted_date, userid))
+    chart_data = cursor.fetchall()
+    # print(chart_data)
+    cursor.close()
+    conn.close()
+
+    return chart_data
+def this_month_withfilter(cardnumber):
+
+    conn = sqlite3.connect('/home/pi/Coffe-/data/mydatabase.db')
+    cursor = conn.cursor()
+
+    cursor.execute("SELECT * FROM users WHERE cardnumber = ? ", (cardnumber,))
+    data = cursor.fetchone()
+    userid=data[0]
+ 
+    # Calculate the date 7 days ago from the current date
+
+    seven_days_ago = datetime.strptime(get_current_date(), '%Y.%m.%d') - timedelta(days=7)
+    formatted_date = seven_days_ago.strftime('%Y.%m.%d')   
+    # Execute the SQL query
+
+    cursor.execute("SELECT date, COUNT(*) FROM coffeelog WHERE date >= ? AND cardid = ? GROUP BY date", (formatted_date, userid))
+    chart_data = cursor.fetchall()
+    print(chart_data)
+    cursor.close()
+    conn.close()
+
+    return chart_data
+def this_year_withfilter(cardnumber):
 
     conn = sqlite3.connect('/home/pi/Coffe-/data/mydatabase.db')
     cursor = conn.cursor()

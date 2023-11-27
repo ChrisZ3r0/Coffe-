@@ -7,7 +7,14 @@
     <title>Login</title>
     
 </head>
-<body>
+<body class = "adminlog-page">
+    <div class="top-navigation">
+        <img src="{{ url_for('static', filename='coffeeindex.png') }}" alt="Coffee+" style="width: 200px; height: 125px;">
+        <a href="{{ url_for('default') }}"><button>Home</button></a>
+        <a href="{{ url_for('userlog') }}"><button>User Login</button></a>
+        <a href="{{ url_for('adminlog') }}"><button>Admin Login</button></a>
+        <a href="{{ url_for('info') }}"><button>Elerhetosegek</button></a>
+    </div>
     <div class="login-container">
         <h2>Admin login</h2>
         <form action="{{url_for('adminlogin')}}" method="post">

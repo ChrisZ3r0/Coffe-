@@ -1,13 +1,18 @@
-body {
+body.adminlog-page {
     font-family: Arial, sans-serif;
     background-color: #eadbce;
     margin: 0;
     padding: 0;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    flex-direction: column;
     height: 100vh;
 }
+
+.top-navigation {
+    text-align: left; /* Align the content to the left */
+    margin: 20px;
+}
+
 .login-container {
     background-color: #fff;
     padding: 20px;
@@ -15,7 +20,23 @@ body {
     box-shadow: 0 0 100px rgba(0, 0, 0, 0.1);
     width: 300px;
     text-align: center;
+    margin: auto; /* Center the login container horizontally */
 }
+
+button {
+    background-color: #998064;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    margin: 5px;
+}
+
+button:hover {
+    background-color: #77644e;
+}
+
 h2 {
     margin-top: 0;
     text-align: left;

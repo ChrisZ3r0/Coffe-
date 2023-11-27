@@ -2,7 +2,7 @@
 
 ## Bekötési rajz
 
-![A pinek bekötése](../../Pictures/Coffe+schematik.png)
+![A pinek bekötése](../Pictures/Coffe+schematik.png)
 
 ### A pinek bekötési rendje
 RFID

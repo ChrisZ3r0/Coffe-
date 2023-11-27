@@ -2,9 +2,10 @@ body {
     font-family: Arial, sans-serif;
     background-color: #eadbce;
 }
+
 h1 {
     color: #333;
-    text-align:left ;
+    text-align: left;
 }
 
 form {
@@ -17,60 +18,42 @@ form {
 }
 
 fieldset {
-    border:#ddd;
+    border: #ddd;
 }
+
 .container {
     margin: 10px;
     display: flex;
-  }
-.logout{
+}
+
+.logout {
     float: right;
     padding: 10px 20px;
-    width:80px;
+    width: 80px;
     background-color: #998064;
 }
+
 .logout:hover {
     background-color: #77644e;
 }
+
 legend {
     color: #333;
     font-size: 18px;
     font-weight: bold;
+    text-align: center; /* Center the legend */
 }
 
-label {
-    display: block;
-    margin-bottom: 5px;
+div.legend-container {
+    text-align: center; /* Center the legend container */
 }
 
-input[type="text"] {
-    width: 100%;
-    padding: 5px;
-    margin-bottom: 10px;
-    border: 1px solid #ddd;
-    border-radius: 3px;
-}
-
-.login-button {
-    background-color: #998064;
-    color: #fff;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 3px;
-    cursor: pointer;
-}
-.login-button:hover {
-    background-color: #77644e;
-}
-
-a {
-    display: block;
-    width: 20%;
-    padding: 5px;
-    margin-top: 10px;
-    background-color: #007bff;
-    color: #fff;
-    text-align: center;
-    text-decoration: none;
-    border-radius: 3px;
+canvas#myChart {
+    width: 900px; /* Adjust the width as needed */
+    height: 700px; /* Adjust the height as needed */
+    display: block; /* Ensure the canvas is a block element */
+    margin: 0 auto; /* Center the canvas */
+    background-color: #ffffff; /* Match the background color of the form */
+    border-radius: 5px; /* Add some rounding to the corners */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add a subtle box shadow */
 }
