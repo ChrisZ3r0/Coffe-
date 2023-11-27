@@ -175,12 +175,18 @@ def logout():
         # Handle GET request (optional)
         return 'Invalid request method for logout'
 
-@app.route('/get_chart_data')
-def get_chart_data():
+@app.route('/get_chart_data/<cardnumber>')
+def get_chart_data(cardnumber):
     # Replace this with your actual data retrieval logic
+    chart_data = rd.lastsevendays_withfilter(cardnumber)
+    
+    # Process the data and format it for the chart
+    labels = [entry[0] for entry in chart_data]
+    values = [entry[1] for entry in chart_data]
+
     chart_data = {
-        'labels': ['Label 1', 'Label 2', 'Label 3'],
-        'values': [10, 20, 30]
+        'labels': labels,
+        'values': values
     }
     return jsonify(chart_data)
 

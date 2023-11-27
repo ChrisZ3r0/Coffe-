@@ -24,7 +24,7 @@
         <script>
             document.addEventListener("DOMContentLoaded", function () {
                 // Fetch data from Flask backend (replace this with your actual endpoint)
-                fetch("/get_chart_data")
+                fetch("/get_chart_data/"+'{{user_data["cardnumber"]}}')
                     .then(response => response.json())
                     .then(data => {
                         // Process the data and render the chart
@@ -60,7 +60,7 @@
                             data: {
                                 labels: data.labels,
                                 datasets: [{
-                                    label: 'My Bar Chart',
+                                    label: 'Kávé vásárlásaim',
                                     data: data.values,
                                     backgroundColor: createDiagonalPattern('rgba(75, 192, 192, 1)'),
                                     borderColor: 'rgba(75, 192, 192, 1)',
