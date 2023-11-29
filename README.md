@@ -40,7 +40,7 @@ If not, then just do:
 sudo nano /boot/config.txt
 ```
 
-and then search for `dtparam=spi=on`. If it has a **#** before it, just remove it.
+Then search for `dtparam=spi=on`. If it has a **#** before it, just remove it.
 
 If you cannot find this text, then just add it at the end of the `config.txt`
 
@@ -53,7 +53,7 @@ sudo apt update
 sudo apt upgrade
 ```
 
-After that zou have to install these packages:
+After that you have to install these packages:
 
 ```
 sudo apt install python3-dev python3-pip
@@ -90,9 +90,21 @@ If you get this error when you wanna **pip** install some package:
 
 `error: externally-managed-environment` 
 
-Then you just have to ad this to the end of __pip install *package*__ :
+Then you just have to add this to the end of __pip install *package*__ :
 
 `--break-system-packages`
+
+# Running
+
+If you have done everything, the you can start the script.
+
+Navigate into the Coffe- library
+
+`cd Coffe-`
+
+Then start the script by running
+
+`python src/main.py`
 
 # The Schematic
 
