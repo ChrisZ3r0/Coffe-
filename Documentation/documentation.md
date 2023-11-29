@@ -118,7 +118,7 @@ A projektet tovább lehetne több oldalról is fejleszteni, hiszen jelenleg nagy
 
 Egyrészt mindenképpen lehetne a weboldalakat designolni, de ez csak szépségi szempontból lehetne hasznosabb.
 
-A weboldalakon, ahol grafikont rajzolunk ki, ott mindenképpen lehetne több fajta leosztásban is látni az adatokat, például azt hogy ne csak az utolsó 7 nap adatait lássuk.
+A weboldalakon, ahol grafikont rajzolunk ki, ott mindenképpen lehetne több fajta leosztásban is látni az adatokat, például azt hogy ne csak az utolsó 7 nap adatait lássuk. Lehetne mondjuk hónapos, illetve éves bontás is.
 
 Mindenképpen lehetne a biztonságon is növelni, ha nem a születési évszámokat használnánk jelszónak, hanem valamilyen hash alapú jelszó kódolást csinálnánk.
 
@@ -126,12 +126,12 @@ Egy összeforrasztott alaplapra lehetne az eszközt összerakni, amelyel sokkalt
 Emellett lehetne neki egy 3D nyomtatott házat is készíteni, amivel még stabilabb lenne a tároló doboz.
 E kettő kombinálásával pedig még kisebbé is át lehetne alakítani a hardvert.
 
-Az adminfelületbe lehetne egy kávé állítás funkciót beiktatni, ahol meg lehetne változtatni hogy melyik gomb mögött melyik kávé van.
+Az adminfelületbe lehetne egy kávé állítás funkciót beiktatni, ahol meg lehetne változtatni hogy melyik gomb mögött melyik kávé van, illetve a kávék listájának kezelésére is képesek lehetnek.
 Egy olyan funkciót is hozzá lehetne az adminokhoz adni, hogy tudjanak kitörölni felhasználókat az adatbázisból.
 
-A raspberry pi-on megoldani hogy egyrészt automatikusan induljon el a jelenlegi kávérögzítő program, illetve még mindenképpen előnyös lenne ha a raspberrypi-tól lehetne localhostolni az adatbázist, amelyet elérhetnénk valamilyen helyi hálózati, akár netes grafikus felületről.
+A raspberry pi-on megoldani hogy egyrészt automatikusan induljon el a jelenlegi kávérögzítő program, illetve még mindenképpen előnyös lenne ha a raspberrypi-tól lehetne localhostolni az adatbázist, amelyet elérhetnénk valamilyen helyi hálózati, akár netes grafikus felületről. Ezek mellett a localhostos weblapot ellehetne érni valamilyen lokális domainről, és akkor nem kellene a raspberry pi ip címét irogatni.
 
-Lehetne az eszközhöz egy stabilabb áramforrást kapcsolni, illetve hűtőlapkát a processzorra és a memóriára is, mert úgy vélem emiatt képes hosszabb futás után túlmelegedni, és ettől fogva nem reagálni, semmilyen funkcióra.
+Lehetne az eszközhöz egy stabilabb áramforrást kapcsolni, illetve hűtőlapkát a processzorra és a memóriára is, mert úgy vélem emiatt képes hosszabb futás után túlmelegedni, és ettől fogva nem reagálni semmilyen funkcióra.
 
 A végtermékként meg az eszközt lehetne egy kávéfőzőn belülre rakni, amit egy relén keresztül ki-be tudna kapcsolgatni, hogy főzze a kávét.
 
