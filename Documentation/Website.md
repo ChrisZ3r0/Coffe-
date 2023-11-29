@@ -1,12 +1,12 @@
 # A weboldalak dokumentációja
 
 A weboldal 6 felületből áll:
-index.html
-info.html
-user.html
-userlog.html
-admin.html
-adminlog.html
+    index.html
+    info.html
+    user.html
+    userlog.html
+    admin.html
+    adminlog.html
 
 Ha megnyitjuk a weboldalt, akkor az index.html fogad minket, ahol a menügombok segítségével tudunk navigálni. A weblap kiírja a weboldal lényegét. A menügombok pedig az alább leírt weblapok fogadnak.
 
