@@ -1,4 +1,4 @@
-# Ez itt a Coffee+ projekt dokumnetációja
+# Ez itt a Coffee+ projekt dokumentációja
 
 ## Bekötési rajz
 
