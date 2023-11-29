@@ -44,7 +44,7 @@ I2C Display
 
 A rendszer működése a Coffe-/src/main.py néven található meg
 
-Ezt lefuttatva elindítunk egy backendet, amely megjeleníti a számunkra szükséges weblapokat, amikor azokra kliensrequest érkezik. A weblapok dokumentációja egy másik fájlban [Weblapdokumentáció](documentation.md) található.
+Ezt lefuttatva elindítunk egy backendet, amely megjeleníti a számunkra szükséges weblapokat, amikor azokra kliensrequest érkezik. A weblapok dokumentációja egy másik fájlban [Weblapdokumentáció](Website.md) található.
 
 A hardwert egy raspberry pi élteti, amelynek működési leírása alább látható.
 
